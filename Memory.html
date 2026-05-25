@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games - Bria & Maurice</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<!-- NAV -->
+<header class="navbar">
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="seating.html">Seating</a>
+    <a href="menu.html">Menu</a>
+    <a href="games.html">Games</a>
+  </nav>
+</header>
+
+<head>
+  <meta charset="UTF-8">
+  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forever Love Memory Match 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
+      background-size: 400% 400%;
+      animation: gradientMove 8s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      color: white;
+      text-shadow: 2px 2px 5px #ff0077;
+      font-size: 24px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .logo {
+      width: 130px;
+      margin-top: 15px;
+    }
+
+    .game-container {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      grid-gap: 10px;
+      margin-top: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+    }
+
+    .card {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .card.flipped {
+      background: #ff43e0;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .status {
+      margin-top: 10px;
+      color: white;
+      font-weight: 600;
+      text-shadow: 1px 1px 4px #ff0077;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 8px 18px;
+      background: #ff43e0;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 4px 10px rgba(255, 0, 128, 0.3);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ff66ff;
+    }
+
+    /* WIN/LOSE SCREEN */
+    .end-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .end-box {
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 300px;
+      box-shadow: 0 0 20px rgba(255, 0, 170, 0.6);
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .end-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ff0099;
+    }
+
+    .end-msg {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="https://i.imgur.com/vYPpBt8.png" alt="Logo" class="logo">
+  <h1>Forever Love Memory Match 💞</h1>
+  <div class="status" id="status">Moves: 0 / 10</div>
+
+  <div class="game-container" id="game"></div>
+
+  <button onclick="restartGame()">💘 Restart</button>
+
+  <!-- WIN / LOSE SCREEN -->
+  <div class="end-screen" id="endScreen">
+    <div class="end-box">
+      <div class="end-title" id="endTitle"></div>
+      <div class="end-msg" id="endMessage"></div>
+      <button onclick="restartGame()">🔄 Play Again</button>
+    </div>
+  </div>
+
+  <script>
+    const emojis = ["💋", "💍", "💌", "💖", "🌹", "💞", "💑", "💘"];
+    let cards = [...emojis, ...emojis];
+
+    let flippedCards = [];
+    let matchedCards = [];
+    let moves = 0;
+    const maxMoves = 10; // 🌟 NEW VALUE
+
+    const gameContainer = document.getElementById("game");
+    const statusText = document.getElementById("status");
+
+    const endScreen = document.getElementById("endScreen");
+    const endTitle = document.getElementById("endTitle");
+    const endMessage = document.getElementById("endMessage");
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function showEndScreen(win) {
+      if (win) {
+        endTitle.textContent = "💖 YOU WIN!";
+        endMessage.textContent = `You matched all pairs in ${moves} moves!`;
+      } else {
+        endTitle.textContent = "💔 YOU LOST!";
+        endMessage.textContent = `You ran out of moves (${maxMoves}).`;
+      }
+      endScreen.style.display = "flex";
+    }
+
+    function startGame() {
+      endScreen.style.display = "none";
+      gameContainer.innerHTML = "";
+      moves = 0;
+      flippedCards = [];
+      matchedCards = [];
+      updateStatus();
+      cards = shuffle([...emojis, ...emojis]);
+
+      cards.forEach((emoji, index) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.emoji = emoji;
+        card.dataset.index = index;
+        card.addEventListener("click", flipCard);
+        gameContainer.appendChild(card);
+      });
+    }
+
+    function flipCard() {
+      const card = this;
+      if (flippedCards.length < 2 && !card.classList.contains("flipped") && !matchedCards.includes(card)) {
+        card.classList.add("flipped");
+        card.textContent = card.dataset.emoji;
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          moves++;
+          updateStatus();
+          checkForMatch();
+        }
+      }
+    }
+
+    function checkForMatch() {
+      const [first, second] = flippedCards;
+
+      if (first.dataset.emoji === second.dataset.emoji) {
+        matchedCards.push(first, second);
+        flippedCards = [];
+
+        if (matchedCards.length === cards.length) {
+          setTimeout(() => showEndScreen(true), 300);
+        }
+
+      } else {
+        setTimeout(() => {
+          flippedCards.forEach(card => {
+            card.classList.remove("flipped");
+            card.textContent = "";
+          });
+          flippedCards = [];
+        }, 650);
+      }
+
+      if (moves >= maxMoves && matchedCards.length < cards.length) {
+        setTimeout(() => showEndScreen(false), 300);
+      }
+    }
+
+    function updateStatus() {
+      statusText.textContent = `Moves: ${moves} / ${maxMoves}`;
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    startGame();
+  </script>
+
+</body>
+</html>

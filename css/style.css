@@ -1,0 +1,381 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #fff;
+  color: #222;
+  overflow-x: hidden;
+}
+
+/* NAVIGATION */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.logo img {
+  height: 38px;
+}
+
+/* NAV LINKS */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ff00b7;
+}
+
+/* HOME HERO SECTION */
+.hero {
+  min-height: 115vh;
+  background-image: url('../images/BW.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* ADJUST THIS TO MOVE BACKGROUND */
+  background-position: center 35%;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 8%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+}
+
+/* HOME IMAGE */
+.hero-photo img {
+  width: 340px;
+  max-width: 100%;
+  border-radius: 15px;
+  object-fit: contain;
+}
+
+/* HOME TEXT */
+.hero-text {
+  color: white;
+  flex: 1;
+}
+
+.sub-title {
+  color: #ff00b7;
+  margin-bottom: 12px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  color: #ff00b7;
+  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.welcome-text {
+  line-height: 1.9;
+  font-size: 16px;
+  max-width: 700px;
+}
+
+.signature {
+  margin-top: 18px;
+  color: #ff00b7;
+  font-size: 24px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* GENERAL PAGE SECTIONS */
+.page {
+  padding: 120px 8%;
+  text-align: center;
+}
+
+/* PAGE TITLES */
+.page-title {
+  font-size: 3rem;
+  color: #ff00b7;
+  margin-bottom: 30px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* MENU + SEATING IMAGE FIX */
+.full-img {
+  width: 100%;
+  max-width: 1000px;
+
+  /* IMPORTANT */
+  max-height: 78vh;
+
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+/* GAMES PAGE */
+.games-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 8%;
+
+  background-image: url('../images/FunkoLOGO.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+}
+
+/* WHITE OVERLAY */
+.games-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.88);
+}
+
+.games-inner {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* STANDARD PAGE IMAGE */
+.page-image {
+  width: 280px;
+  max-width: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* GAMES TEXT */
+.games-text {
+  color: #111;
+  flex: 1;
+}
+
+.games-text h1 {
+  color: #ff00b7;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.games-text p {
+  line-height: 1.8;
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+/* GAME BUTTON SECTION */
+.games-hub {
+  padding: 120px 8%;
+  text-align: center;
+}
+
+.games-hub h1 {
+  color: #ff00b7;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.games-hub p {
+  margin-bottom: 40px;
+}
+
+/* BUTTON GRID */
+.game-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* BUTTON STYLE */
+.game-btn {
+  background: #ff00b7;
+  color: white;
+  padding: 22px;
+  text-decoration: none;
+  border-radius: 14px;
+  font-weight: bold;
+  transition: 0.3s ease;
+  font-size: 18px;
+}
+
+.game-btn:hover {
+  transform: scale(1.03);
+  background: #d10093;
+}
+
+/* MOBILE TABLET */
+@media (max-width: 900px) {
+
+  .hero {
+    min-height: auto;
+    padding-top: 140px;
+    padding-bottom: 80px;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-photo img {
+    width: 260px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.7rem;
+  }
+
+  .welcome-text {
+    font-size: 15px;
+  }
+
+  .games-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .page-image {
+    width: 240px;
+  }
+
+  .games-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .game-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  /* FIX MENU + SEATING ON MOBILE */
+  .full-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 500px) {
+
+  .logo img {
+    height: 22px;
+  }
+
+  .navbar {
+    padding: 12px 5%;
+  }
+
+  nav a {
+    font-size: 11px;
+    margin-left: 8px;
+  }
+
+  .hero {
+    padding-left: 5%;
+    padding-right: 5%;
+
+    /* MOBILE BACKGROUND POSITION */
+    background-position: center 20%;
+  }
+
+  .hero-photo img {
+    width: 210px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .sub-title {
+    font-size: 15px;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .signature {
+    font-size: 22px;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+  }
+
+  .games-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .games-text p {
+    font-size: 14px;
+  }
+
+  .game-btn {
+    font-size: 16px;
+    padding: 18px;
+  }
+
+  /* MENU + SEATING FINAL MOBILE FIX */
+  .full-img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+  }
+}

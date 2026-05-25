@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games - Bria & Maurice</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<!-- NAV -->
+<header class="navbar">
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="seating.html">Seating</a>
+    <a href="menu.html">Menu</a>
+    <a href="games.html">Games</a>
+  </nav>
+</header>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect-4💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
+    background-size: 400% 400%;
+    animation: gradientMove 8s ease infinite;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  h1 {
+    color: white;
+    text-shadow: 2px 2px 5px #ff0077;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .logo {
+    width: 130px;
+    margin-top: 15px;
+  }
+
+  canvas {
+    margin-top: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+  }
+
+  .status {
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px #ff0077;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<img src="https://i.imgur.com/vYPpBt8.png" alt="Logo" class="logo">
+<h1>Connect 4Ever 💞</h1>
+<div class="status" id="status">Your moves: 0 | CPU moves: 0</div>
+<canvas id="gameCanvas"></canvas>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const cols = 7;
+const rows = 6;
+let grid = Array.from({length: rows}, () => Array(cols).fill(0));
+let cellSize;
+let gameOver = false;
+let winner = 0;
+let playerMoves = 0;
+let cpuMoves = 0;
+let playerTurn = true; // true when it's player's turn
+
+const statusText = document.getElementById("status");
+
+function resizeCanvas() {
+  canvas.width = 350;
+  canvas.height = (canvas.width / cols) * rows;
+  cellSize = canvas.width / cols;
+  drawBoard();
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function drawBoard() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      ctx.fillStyle="rgba(255,255,255,0.2)";
+      ctx.fillRect(c*cellSize, r*cellSize, cellSize, cellSize);
+
+      ctx.beginPath();
+      ctx.arc(c*cellSize + cellSize/2, r*cellSize + cellSize/2, cellSize/2 - 5, 0, Math.PI*2);
+      if(grid[r][c]===1) ctx.fillStyle="#ff43e0"; // Player
+      else if(grid[r][c]===2) ctx.fillStyle="#ffff66"; // CPU
+      else ctx.fillStyle="white";
+      ctx.fill();
+    }
+  }
+
+  statusText.textContent = `Your moves: ${playerMoves} | CPU moves: ${cpuMoves}`;
+
+  if(gameOver){
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
+    ctx.fillRect(0, canvas.height/2 - 60, canvas.width, 120);
+    ctx.fillStyle = "#fff";
+    ctx.font = "22px Arial";
+    ctx.textAlign = "center";
+    let text = winner === 1 ? "You Win!" :
+               winner === 2 ? "CPU Wins!" : "Draw!";
+    ctx.fillText(text, canvas.width/2, canvas.height/2 - 10);
+    ctx.font = "16px Arial";
+    ctx.fillText(`Your moves: ${playerMoves} | CPU moves: ${cpuMoves}`,
+                 canvas.width/2, canvas.height/2 + 15);
+    ctx.fillText("Click to restart", canvas.width/2, canvas.height/2 + 40);
+  }
+}
+
+canvas.addEventListener("click", function(e){
+  if(gameOver){
+    restartGame();
+    return;
+  }
+
+  if(!playerTurn) return; // can't move out of turn
+
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const col = Math.floor(x / cellSize);
+  playerMove(col);
+});
+
+// ---------------------- ANIMATED DROP ----------------------
+async function dropPieceAnimated(col, player){
+  for(let r=0;r<rows;r++){
+    if(grid[r][col]!==0){
+      let targetRow = r-1;
+      await animateDrop(col,targetRow,player);
+      grid[targetRow][col]=player;
+      return targetRow;
+    }
+  }
+  let targetRow = rows-1;
+  await animateDrop(col,targetRow,player);
+  grid[targetRow][col]=player;
+  return targetRow;
+}
+
+function animateDrop(col,row,player){
+  return new Promise(resolve=>{
+    let y = 0;
+    const targetY = row*cellSize + cellSize/2;
+    const color = player===1 ? "#ff43e0" : "#ffff66";
+    function step(){
+      drawBoard();
+      ctx.beginPath();
+      ctx.arc(col*cellSize + cellSize/2, y, cellSize/2 - 5, 0, Math.PI*2);
+      ctx.fillStyle=color;
+      ctx.fill();
+      y+=10; // slower drop
+      if(y>=targetY){
+        y=targetY;
+        drawBoard();
+        ctx.beginPath();
+        ctx.arc(col*cellSize + cellSize/2, y, cellSize/2 - 5, 0, Math.PI*2);
+        ctx.fillStyle=color;
+        ctx.fill();
+        resolve();
+      } else {
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+// ---------------------- GAME LOGIC ----------------------
+async function playerMove(col){
+  if(gameOver || !playerTurn) return;
+  if(grid[0][col]!==0) return; // Column full
+
+  playerMoves++;
+  playerTurn = false; // end player's turn
+  await dropPieceAnimated(col,1);
+
+  if(checkWin(1)){
+    winner = 1;
+    gameOver = true;
+    drawBoard();
+    return;
+  }
+
+  if(boardFull()){
+    winner = 0;
+    gameOver = true;
+    drawBoard();
+    return;
+  }
+
+  setTimeout(cpuTurn, 200);
+}
+
+async function cpuTurn(){
+  if(gameOver) return;
+
+  const bestMove = minimaxRoot(6,true); // very strong CPU
+  cpuMoves++;
+  await dropPieceAnimated(bestMove,2);
+
+  if(checkWin(2)){
+    winner = 2;
+    gameOver = true;
+    drawBoard();
+    return;
+  }
+
+  if(boardFull()){
+    winner = 0;
+    gameOver = true;
+  }
+
+  playerTurn = true; // player's turn again
+  drawBoard();
+}
+
+function boardFull(){
+  return grid[0].every(cell=>cell!==0);
+}
+
+// ---------------------- CPU MINIMAX ----------------------
+function minimaxRoot(depth,maximizingPlayer){
+  let bestValue=-Infinity;
+  let bestCol=null;
+  const validMoves=getValidMoves();
+  for(const col of validMoves){
+    const row=simulateMove(col,maximizingPlayer?2:1);
+    const value=minimax(depth-1,-Infinity,Infinity,false);
+    undoMove(row,col);
+    if(value>bestValue){
+      bestValue=value;
+      bestCol=col;
+    }
+  }
+  return bestCol;
+}
+
+function minimax(depth,alpha,beta,maximizingPlayer){
+  const validMoves=getValidMoves();
+  if(depth===0||validMoves.length===0||checkWin(1)||checkWin(2)){
+    return evaluateBoard();
+  }
+  if(maximizingPlayer){
+    let value=-Infinity;
+    for(const col of validMoves){
+      const row=simulateMove(col,2);
+      value=Math.max(value,minimax(depth-1,alpha,beta,false));
+      undoMove(row,col);
+      alpha=Math.max(alpha,value);
+      if(alpha>=beta) break;
+    }
+    return value;
+  }else{
+    let value=Infinity;
+    for(const col of validMoves){
+      const row=simulateMove(col,1);
+      value=Math.min(value,minimax(depth-1,alpha,beta,true));
+      undoMove(row,col);
+      beta=Math.min(beta,value);
+      if(beta<=alpha) break;
+    }
+    return value;
+  }
+}
+
+function getValidMoves(){
+  const moves=[];
+  for(let c=0;c<cols;c++){
+    if(grid[0][c]===0) moves.push(c);
+  }
+  return moves;
+}
+
+function simulateMove(col,player){
+  for(let r=rows-1;r>=0;r--){
+    if(grid[r][col]===0){
+      grid[r][col]=player;
+      return r;
+    }
+  }
+  return null;
+}
+function undoMove(row,col){ grid[row][col]=0; }
+
+function evaluateBoard(){
+  let score=0;
+  for(let r=0;r<rows;r++){
+    if(grid[r][3]===2) score+=5;
+    if(grid[r][3]===1) score-=5;
+  }
+  score+=evaluateLines();
+  return score;
+}
+
+function evaluateLines(){
+  let score=0;
+  function scoreWindow(window){
+    const cpu=window.filter(v=>v===2).length;
+    const player=window.filter(v=>v===1).length;
+    const empty=window.filter(v=>v===0).length;
+    if(cpu===4) score+=1000;
+    else if(cpu===3 && empty===1) score+=50;
+    else if(cpu===2 && empty===2) score+=10;
+    if(player===3 && empty===1) score-=80;
+    else if(player===2 && empty===2) score-=10;
+  }
+
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols-3;c++){
+      scoreWindow([grid[r][c],grid[r][c+1],grid[r][c+2],grid[r][c+3]]);
+    }
+  }
+  for(let c=0;c<cols;c++){
+    for(let r=0;r<rows-3;r++){
+      scoreWindow([grid[r][c],grid[r+1][c],grid[r+2][c],grid[r+3][c]]);
+    }
+  }
+  for(let r=0;r<rows-3;r++){
+    for(let c=0;c<cols-3;c++){
+      scoreWindow([grid[r][c],grid[r+1][c+1],grid[r+2][c+2],grid[r+3][c+3]]);
+    }
+  }
+  for(let r=0;r<rows-3;r++){
+    for(let c=3;c<cols;c++){
+      scoreWindow([grid[r][c],grid[r+1][c-1],grid[r+2][c-2],grid[r+3][c-3]]);
+    }
+  }
+  return score;
+}
+
+function checkWin(player){
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols-3;c++){
+      if(grid[r][c]===player && grid[r][c+1]===player && grid[r][c+2]===player && grid[r][c+3]===player) return true;
+    }
+  }
+  for(let c=0;c<cols;c++){
+    for(let r=0;r<rows-3;r++){
+      if(grid[r][c]===player && grid[r+1][c]===player && grid[r+2][c]===player && grid[r+3][c]===player) return true;
+    }
+  }
+  for(let r=0;r<rows-3;r++){
+    for(let c=0;c<cols-3;c++){
+      if(grid[r][c]===player && grid[r+1][c+1]===player && grid[r+2][c+2]===player && grid[r+3][c+3]===player) return true;
+    }
+  }
+  for(let r=0;r<rows-3;r++){
+    for(let c=3;c<cols;c++){
+      if(grid[r][c]===player && grid[r+1][c-1]===player && grid[r+2][c-2]===player && grid[r+3][c-3]===player) return true;
+    }
+  }
+  return false;
+}
+
+function restartGame(){
+  grid=Array.from({length: rows},()=>Array(cols).fill(0));
+  gameOver=false;
+  winner=0;
+  playerMoves=0;
+  cpuMoves=0;
+  playerTurn = true;
+  drawBoard();
+}
+
+drawBoard();
+</script>
+
+</body>
+</html>
