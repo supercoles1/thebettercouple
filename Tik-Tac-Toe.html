@@ -206,32 +206,40 @@
   }
 
   function cpuMove() {
-    let move;
+  let bestScore = -Infinity;
+  let move;
 
-    for (let i = 0; i < 9; i++) {
-      if (board[i] === "") {
+  // HARD AI (tries best move, not first available)
+  for (let i = 0; i < 9; i++) {
+    if (board[i] === "") {
+      board[i] = "O";
+      let score = minimax(board, 0, false, -Infinity, Infinity);
+      board[i] = "";
+
+      if (score > bestScore) {
+        bestScore = score;
         move = i;
-        break;
       }
     }
-
-    makeMove(move, "O");
-
-    if (checkWinner(board, "O")) {
-      gameActive = false;
-      showEndScreen("Dang! I Win!", "Beauty and Brains");
-      return;
-    }
-
-    if (!board.includes("")) {
-      gameActive = false;
-      showEndScreen("😐 Draw!", "Nobody wins!");
-      return;
-    }
-
-    currentPlayer = "X";
-    statusText.textContent = "Your turn (X)";
   }
+
+  makeMove(move, "O");
+
+  if (checkWinner(board, "O")) {
+    gameActive = false;
+    showEndScreen("Dang! I Win!", "Beauty and Brains 💅");
+    return;
+  }
+
+  if (!board.includes("")) {
+    gameActive = false;
+    showEndScreen("😐 Draw!", "Nobody wins!");
+    return;
+  }
+
+  currentPlayer = "X";
+  statusText.textContent = "Your turn (X)";
+}
 
   function makeMove(index, player) {
     board[index] = player;
@@ -258,6 +266,44 @@
     [...gameContainer.children].forEach(c => c.textContent = "");
     endScreen.style.display = "none";
   }
+
+  function minimax(newBoard, depth, isMaximizing, alpha, beta) {
+  if (checkWinner(newBoard, "O")) return 10 - depth;
+  if (checkWinner(newBoard, "X")) return depth - 10;
+  if (!newBoard.includes("")) return 0;
+
+  if (isMaximizing) {
+    let best = -Infinity;
+
+    for (let i = 0; i < 9; i++) {
+      if (newBoard[i] === "") {
+        newBoard[i] = "O";
+        let score = minimax(newBoard, depth + 1, false, alpha, beta);
+        newBoard[i] = "";
+        best = Math.max(score, best);
+        alpha = Math.max(alpha, score);
+        if (beta <= alpha) break;
+      }
+    }
+    return best;
+
+  } else {
+    let best = Infinity;
+
+    for (let i = 0; i < 9; i++) {
+      if (newBoard[i] === "") {
+        newBoard[i] = "X";
+        let score = minimax(newBoard, depth + 1, true, alpha, beta);
+        newBoard[i] = "";
+        best = Math.min(score, best);
+        beta = Math.min(beta, score);
+        if (beta <= alpha) break;
+      }
+    }
+    return best;
+  }
+}
+
 </script>
 
 </body>
