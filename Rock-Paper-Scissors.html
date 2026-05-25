@@ -200,7 +200,7 @@ async function playerChoice(choice) {
   // Animate choices
   status.innerHTML = `
     <div><span class="player-label">You:</span><span class="animate-choice">${choiceEmoji(choice)}</span></div>
-    <div><span class="cpu-label">CPU:</span><span class="animate-choice">${choiceEmoji(ai)}</span></div>
+    <div><span class="cpu-label">Me:</span><span class="animate-choice">${choiceEmoji(ai)}</span></div>
   `;
 
   // Wait for animation
@@ -222,7 +222,7 @@ async function playerChoice(choice) {
 
   status.innerHTML = `
     <div><span class="player-label">You:</span>${choiceEmoji(choice)}</div>
-    <div><span class="cpu-label">CPU:</span>${choiceEmoji(ai)}</div>
+    <div><span class="cpu-label">Me:</span>${choiceEmoji(ai)}</div>
     <div><b>${result}</b></div>
     <div>Score — You: ${playerScore} | Me: ${aiScore}</div>
     <div>Round ${round} of ${maxRounds}</div>
