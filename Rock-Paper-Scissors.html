@@ -216,7 +216,7 @@ async function playerChoice(choice) {
     result = "You Win this round!";
     playerScore++;
   } else {
-    result = "CPU Wins this round!";
+    result = "I Wins this round!";
     aiScore++;
   }
 
@@ -224,7 +224,7 @@ async function playerChoice(choice) {
     <div><span class="player-label">You:</span>${choiceEmoji(choice)}</div>
     <div><span class="cpu-label">CPU:</span>${choiceEmoji(ai)}</div>
     <div><b>${result}</b></div>
-    <div>Score — You: ${playerScore} | CPU: ${aiScore}</div>
+    <div>Score — You: ${playerScore} | Me: ${aiScore}</div>
     <div>Round ${round} of ${maxRounds}</div>
   `;
 
@@ -236,8 +236,8 @@ async function playerChoice(choice) {
     disableButtons(true);
     setTimeout(() => {
       let final = "";
-      if(playerScore > aiScore) final = "🎉 You are the Champion! 💖";
-      else if(aiScore > playerScore) final = "💛 CPU is the Champion!";
+      if(playerScore > aiScore) final = "🎉 You got me!";
+      else if(aiScore > playerScore) final = "I am the Champion!";
       else final = "🤝 It's a Tie!";
 
       // Make winner visible
