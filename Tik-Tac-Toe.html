@@ -201,7 +201,7 @@
     }
 
     currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusText.textContent = "CPU thinking...";
+    statusText.textContent = "Bria is thinking...";
     setTimeout(cpuMove, 800);
   }
 
@@ -219,7 +219,7 @@
 
     if (checkWinner(board, "O")) {
       gameActive = false;
-      showEndScreen("💀 CPU Wins!", "Try again loser 😭");
+      showEndScreen("Dang! I Win!", "Beauty and Brains");
       return;
     }
 
