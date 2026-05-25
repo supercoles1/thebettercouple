@@ -1,27 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>❌⭕❌</title>
-
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<!-- NAV -->
-<header class="navbar">
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html">Games</a>
-  </nav>
-</header>
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tic Tac Toe</title>
+<title>❌⭕❌</title>
+
+<link rel="stylesheet" href="css/style.css" />
+
 <style>
   body {
     background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
@@ -31,24 +16,20 @@
     align-items: center;
     margin: 0;
     padding-top: 20px;
-
-    /* FIXES */
-    overflow-x: hidden;   /* no left/right scroll */
-    height: auto;         /* allow scrolling */
+    overflow-x: hidden;
   }
 
   img.logo {
-    width: 150px;          /* smaller */
+    width: 150px;
     margin-bottom: 15px;
   }
 
   h1 {
     margin: 5px;
-    color: #333;
-    font-size: 22px;       /* smaller */
+    color: white;
+    font-size: 22px;
   }
 
-  /* SMALLER GAME AREA */
   #game {
     display: grid;
     grid-template-columns: repeat(3, 70px);
@@ -65,7 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 38px;       /* smaller X/O */
+    font-size: 38px;
     color: white;
     cursor: pointer;
     transition: transform 0.2s;
@@ -78,6 +59,7 @@
   #status {
     margin-top: 15px;
     font-size: 16px;
+    color: white;
   }
 
   button {
@@ -94,35 +76,104 @@
   button:hover {
     background: #555;
   }
+
+  /* =========================
+     MEMORY STYLE END SCREEN
+  ========================== */
+
+  .end-screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    z-index: 999;
+  }
+
+  .end-box {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 0 20px rgba(255, 0, 170, 0.6);
+    animation: pop 0.4s ease;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .end-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ff0099;
+  }
+
+  .end-msg {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #444;
+  }
+
+  .end-box button {
+    background: #ff43e0;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 </style>
 </head>
-<body class="game-page">
 
-<!-- Logo -->
-<img src="images/HerFunkoPop.png" alt="BreezyBre Logo" class="logo">
-  
+<body>
+
+<img src="images/HerFunkoPop.png" class="logo">
+
 <p class="game-quote">
-          "Tic-tac-toe? I’ll let you go first… not because 
-        I have to, but because it makes the ending more embarrassing for you."
-        <br><br>
-        -Bria
-      </p>
+  "Tic-tac-toe? I’ll let you go first… not because I have to, but because it makes the ending more embarrassing for you."
+  <br><br>-Bria
+</p>
 
 <h1>Tic Tac Toe</h1>
 
 <div id="game"></div>
-
 <div id="status">Your turn (X)</div>
 <button onclick="restartGame()">Restart</button>
+
+<!-- END SCREEN -->
+<div class="end-screen" id="endScreen">
+  <div class="end-box">
+    <div class="end-title" id="endTitle"></div>
+    <div class="end-msg" id="endMessage"></div>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+</div>
 
 <script>
   const gameContainer = document.getElementById("game");
   const statusText = document.getElementById("status");
+
+  const endScreen = document.getElementById("endScreen");
+  const endTitle = document.getElementById("endTitle");
+  const endMessage = document.getElementById("endMessage");
+
   let board = ["", "", "", "", "", "", "", "", ""];
   let currentPlayer = "X";
   let gameActive = true;
 
-  // Create the 9 cells
+  function showEndScreen(title, message) {
+    endTitle.textContent = title;
+    endMessage.textContent = message;
+    endScreen.style.display = "flex";
+  }
+
   for (let i = 0; i < 9; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
@@ -134,96 +185,69 @@
   function handleCellClick(e) {
     const index = e.target.dataset.index;
     if (board[index] !== "" || !gameActive) return;
+
     makeMove(index, currentPlayer);
+
     if (checkWinner(board, currentPlayer)) {
-      endGame(`${currentPlayer} wins!`);
-      return;
-    } else if (!board.includes("")) {
-      endGame("It's a draw!");
+      gameActive = false;
+      showEndScreen("🎉 Winner!", `${currentPlayer} wins the game!`);
       return;
     }
-    currentPlayer = "X" ? "O" : "X";
+
+    if (!board.includes("")) {
+      gameActive = false;
+      showEndScreen("😐 Draw!", "No more moves left!");
+      return;
+    }
+
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusText.textContent = "CPU thinking...";
     setTimeout(cpuMove, 800);
   }
 
   function cpuMove() {
-    let bestScore = -Infinity;
     let move;
+
     for (let i = 0; i < 9; i++) {
       if (board[i] === "") {
-        board[i] = "O";
-        let score = minimax(board, 0, false, -Infinity, Infinity);
-        board[i] = "";
-        if (score > bestScore) {
-          bestScore = score;
-          move = i;
-        }
+        move = i;
+        break;
       }
     }
+
     makeMove(move, "O");
+
     if (checkWinner(board, "O")) {
-      endGame("CPU wins!");
-    } else if (!board.includes("")) {
-      endGame("It's a draw!");
-    } else {
-      currentPlayer = "X";
-      statusText.textContent = "Your turn (X)";
+      gameActive = false;
+      showEndScreen("💀 CPU Wins!", "Try again loser 😭");
+      return;
     }
+
+    if (!board.includes("")) {
+      gameActive = false;
+      showEndScreen("😐 Draw!", "Nobody wins!");
+      return;
+    }
+
+    currentPlayer = "X";
+    statusText.textContent = "Your turn (X)";
   }
 
   function makeMove(index, player) {
     board[index] = player;
-    const cell = gameContainer.children[index];
-    cell.textContent = player;
+    gameContainer.children[index].textContent = player;
   }
 
-  function minimax(newBoard, depth, isMaximizing, alpha, beta) {
-    if (checkWinner(newBoard, "O")) return 10 - depth;
-    if (checkWinner(newBoard, "X")) return depth - 10;
-    if (!newBoard.includes("")) return 0;
-
-    if (isMaximizing) {
-      let best = -Infinity;
-      for (let i = 0; i < 9; i++) {
-        if (newBoard[i] === "") {
-          newBoard[i] = "O";
-          let score = minimax(newBoard, depth + 1, false, alpha, beta);
-          newBoard[i] = "";
-          best = Math.max(score, best);
-          alpha = Math.max(alpha, score);
-          if (beta <= alpha) break;
-        }
-      }
-      return best;
-    } else {
-      let best = Infinity;
-      for (let i = 0; i < 9; i++) {
-        if (newBoard[i] === "") {
-          newBoard[i] = "X";
-          let score = minimax(newBoard, depth + 1, true, alpha, beta);
-          newBoard[i] = "";
-          best = Math.min(score, best);
-          beta = Math.min(beta, score);
-          if (beta <= alpha) break;
-        }
-      }
-      return best;
-    }
-  }
-
-  function checkWinner(b, player) {
+  function checkWinner(b, p) {
     const winPatterns = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      [0, 4, 8], [2, 4, 6]
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
     ];
-    return winPatterns.some(p => p.every(i => b[i] === player));
-  }
 
-  function endGame(message) {
-    gameActive = false;
-    statusText.textContent = message;
+    return winPatterns.some(pattern =>
+      pattern.every(i => b[i] === p)
+    );
   }
 
   function restartGame() {
@@ -232,6 +256,7 @@
     currentPlayer = "X";
     statusText.textContent = "Your turn (X)";
     [...gameContainer.children].forEach(c => c.textContent = "");
+    endScreen.style.display = "none";
   }
 </script>
 
