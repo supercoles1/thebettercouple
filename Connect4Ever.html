@@ -83,6 +83,60 @@
   #restart:hover {
     background: #ff33cc;
   }
+
+  /* =========================
+   MEMORY STYLE END SCREEN
+========================== */
+
+.end-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.end-box {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 300px;
+  box-shadow: 0 0 20px rgba(255, 0, 170, 0.6);
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.end-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff0099;
+}
+
+.end-msg {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.end-box button {
+  background: #ff43e0;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -111,6 +165,15 @@
 <h1>Connect 4Ever 💞</h1>
 <div class="status" id="status">Your moves: 0 | Our moves: 0</div>
 <canvas id="gameCanvas"></canvas>
+
+<!-- END SCREEN -->
+<div class="end-screen" id="endScreen">
+  <div class="end-box">
+    <div class="end-title" id="endTitle"></div>
+    <div class="end-msg" id="endMessage"></div>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+</div>
 
 <script>
 const canvas = document.getElementById("gameCanvas");
