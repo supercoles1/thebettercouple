@@ -161,8 +161,8 @@
 <img src="images/BreezyUFC.png" alt="BreezyBre Logo" class="logo">
   
 <p class="welcome-text">
-        Think you can beat me at a game that test your memory? 
-        Probably not, I'm undefeated at this game against elephants.
+        Think you can beat me at a game that tests your memory?
+Yeah… I doubt it. I’m basically undefeated—even elephants don’t want the smoke.
         <br><br>
         Breon
       </p>
@@ -183,7 +183,7 @@
   </div>
 
   <script>
-    const emojis = ["💋", "💍", "💌", "💖", "🌹", "💞", "💑", "💘"];
+    const emojis = ["💋", "💍", "💌", "💛", "🌹", "💞", "💏", "💘"];
     let cards = [...emojis, ...emojis];
 
     let flippedCards = [];
@@ -208,10 +208,10 @@
 
     function showEndScreen(win) {
       if (win) {
-        endTitle.textContent = "💖 YOU WIN!";
+        endTitle.textContent = "💖 You Cheater, I never  lose!";
         endMessage.textContent = `You matched all pairs in ${moves} moves!`;
       } else {
-        endTitle.textContent = "💔 YOU LOST!";
+        endTitle.textContent = "🤣 Ha Ha, what a LOSER!";
         endMessage.textContent = `You ran out of moves (${maxMoves}).`;
       }
       endScreen.style.display = "flex";
