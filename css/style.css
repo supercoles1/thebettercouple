@@ -397,4 +397,95 @@ nav a:hover {
     max-height: 60vh;
     object-fit: contain;
   }
+
+  /* =========================
+   GAME PAGE UNIVERSAL STYLE
+========================= */
+
+.game-page {
+  margin: 0;
+  min-height: 100vh;
+  padding: 120px 20px 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: white;
+
+  background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.game-page h1 {
+  text-shadow: 2px 2px 5px #ff0077;
+  margin-bottom: 10px;
+  font-size: 2.3rem;
+}
+
+.game-logo {
+  width: 130px;
+  margin-bottom: 15px;
+}
+
+.game-quote {
+  text-align: center;
+  color: white;
+  max-width: 550px;
+  margin: 10px auto 25px;
+  padding: 0 15px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-shadow: 1px 1px 4px #ff0077;
+  font-style: italic;
+}
+
+.game-status {
+  font-size: 18px;
+  text-shadow: 1px 1px 4px #ff0077;
+}
+
+.game-btn-style {
+  background: rgba(255,255,255,0.2);
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.game-btn-style:hover {
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+
+  .game-page {
+    padding-top: 110px;
+  }
+
+  .game-page h1 {
+    font-size: 2rem;
+  }
+
+  .game-quote {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .game-logo {
+    width: 110px;
+  }
+}
 }
