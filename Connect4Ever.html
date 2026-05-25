@@ -53,6 +53,17 @@
 </head>
 <body>
 
+  <!-- NAV -->
+<header class="navbar">
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="seating.html">Seating</a>
+    <a href="menu.html">Menu</a>
+    <a href="games.html">Games</a>
+  </nav>
+</header>
+
 <img src="images/FunkoUs4ever.png" alt="BreezyBre Logo" class="logo">
   
 <p class="welcome-text">
@@ -63,7 +74,7 @@
       </p>
 
 <h1>Connect 4Ever 💞</h1>
-<div class="status" id="status">Your moves: 0 | CPU moves: 0</div>
+<div class="status" id="status">Your moves: 0 | Our moves: 0</div>
 <canvas id="gameCanvas"></canvas>
 
 <script>
@@ -109,7 +120,7 @@ function drawBoard() {
     }
   }
 
-  statusText.textContent = `Your moves: ${playerMoves} | CPU moves: ${cpuMoves}`;
+  statusText.textContent = `Your moves: ${playerMoves} | Our moves: ${cpuMoves}`;
 
   if(gameOver){
     ctx.fillStyle = "rgba(0,0,0,0.7)";
@@ -117,11 +128,11 @@ function drawBoard() {
     ctx.fillStyle = "#fff";
     ctx.font = "22px Arial";
     ctx.textAlign = "center";
-    let text = winner === 1 ? "You Win!" :
-               winner === 2 ? "CPU Wins!" : "Draw!";
+    let text = winner === 1 ? "You got LUCKY!" :
+               winner === 2 ? "We Win DUH!" : "Draw!";
     ctx.fillText(text, canvas.width/2, canvas.height/2 - 10);
     ctx.font = "16px Arial";
-    ctx.fillText(`Your moves: ${playerMoves} | CPU moves: ${cpuMoves}`,
+    ctx.fillText(`Your moves: ${playerMoves} | Our moves: ${cpuMoves}`,
                  canvas.width/2, canvas.height/2 + 15);
     ctx.fillText("Click to restart", canvas.width/2, canvas.height/2 + 40);
   }
