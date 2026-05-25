@@ -115,6 +115,18 @@ nav a:hover {
   max-width: 700px;
 }
 
+.game-quote {
+  text-align: center;
+  color: white;
+  max-width: 500px;
+  margin: 10px auto 20px auto;
+  padding: 0 15px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-shadow: 1px 1px 4px #ff0077;
+  font-style: italic;
+}
+
 .signature {
   margin-top: 18px;
   color: #ff00b7;
@@ -371,6 +383,13 @@ nav a:hover {
     font-size: 16px;
     padding: 18px;
   }
+
+  @media (max-width: 500px) {
+  .game-quote {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
 
   /* MENU + SEATING FINAL MOBILE FIX */
   .full-img {
