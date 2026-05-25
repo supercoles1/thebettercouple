@@ -26,34 +26,66 @@
   }
 
   h1 {
-    color: white;
-    text-shadow: 2px 2px 5px #ff0077;
-    text-align: center;
-    margin-top: 15px;
+    color: #fff;
+    margin: 10px 0 20px 0;
+    text-shadow: 2px 2px 5px #330022;
   }
 
   .logo {
-    width: 130px;
-    margin-top: 15px;
+    width: 120px;
+    margin-top: 20px;
   }
 
-  canvas {
-    margin-top: 15px;
-    border-radius: 15px;
+  #cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .card {
+    width: 60px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ff43e0;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
   }
 
-  .status {
-    margin-top: 10px;
-    color: white;
-    font-weight: 600;
-    text-shadow: 1px 1px 4px #ff0077;
+  .card:hover {
+    transform: scale(1.1);
+  }
+
+  #status {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  #restart {
+    margin-top: 15px;
+    padding: 10px 20px;
     font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #ff66ff;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  }
+
+  #restart:hover {
+    background: #ff33cc;
   }
 </style>
 </head>
+
 <body class="game-page">
   
   <!-- NAV -->
