@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  const ctx = canvas.getContext("2d");
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -114,27 +113,10 @@ function drawBoard() {
 
       ctx.beginPath();
       ctx.arc(c*cellSize + cellSize/2, r*cellSize + cellSize/2, cellSize/2 - 5, 0, Math.PI*2);
-      if(grid[r][c] === 0) {
-  ctx.fillStyle = "white";
-  ctx.fill();
-
-} else {
-
-  const img = grid[r][c] === 1 ? playerImg : cpuImg;
-
-  ctx.save();
-  ctx.clip();
-
-  ctx.drawImage(
-    img,
-    c * cellSize + 5,
-    r * cellSize + 5,
-    cellSize - 10,
-    cellSize - 10
-  );
-
-  ctx.restore();
-}
+      if(grid[r][c]===1) ctx.fillStyle="#ff43e0"; // Player
+      else if(grid[r][c]===2) ctx.fillStyle="#ffff66"; // CPU
+      else ctx.fillStyle="white";
+      ctx.fill();
     }
   }
 
