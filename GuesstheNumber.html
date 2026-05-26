@@ -1,125 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>💭</title>
-
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<!-- NAV -->
-<header class="navbar">
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html">Games</a>
-  </nav>
-</header>
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guess the Number 💖</title>
-<style>
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
-    background-size: 400% 400%;
-    animation: gradientMove 8s ease infinite;
-  }
-
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  h1 {
-    color: #fff;
-    margin: 10px 0 20px 0;
-    text-shadow: 2px 2px 5px #330022;
-  }
-
-  .logo {
-    width: 120px;
-    margin-top: 20px;
-  }
-
-  #cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-
-  .card {
-    width: 60px;
-    height: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ff43e0;
-    border-radius: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
-    transition: transform 0.2s;
-  }
-
-  .card:hover {
-    transform: scale(1.1);
-  }
-
-  #status {
-    margin-top: 20px;
-    font-size: 18px;
-    text-align: center;
-  }
-
-  #restart {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background: #ff66ff;
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  }
-
-  #restart:hover {
-    background: #ff33cc;
-  }
-</style>
-</head>
-<body class="game-page">
-
-<img src="images/DeuceHulk.png" alt="BreezyBre Logo" class="logo">
-  
-<p class="game-quote">
-          "Try to guess the number I’m thinking of.
-        Good luck… honestly, most of the time I don’t even know what I’m thinking myself."
-        <br><br>
-        -Brelyn
-      </p>
-  <h1>Guess the Number 💖</h1>
-<div id="cards"></div>
-<div id="status">You have 3 guesses!</div>
-<button id="restart" style="display:none;">Restart</button>
-
 <script>
   const cardsContainer = document.getElementById('cards');
   const status = document.getElementById('status');
   const restartBtn = document.getElementById('restart');
+
+  // YOUR CUSTOM NUMBERS
+  const customNumbers = [7, 13, 22, 45, 66, 88, 99, 101, 202, 777];
 
   let numberToGuess;
   let guessesLeft;
@@ -127,30 +12,40 @@
   function initGame() {
     cardsContainer.innerHTML = '';
     guessesLeft = 3;
-    numberToGuess = Math.floor(Math.random() * 10) + 1;
+
+    // Pick random number from YOUR list
+    numberToGuess = customNumbers[
+      Math.floor(Math.random() * customNumbers.length)
+    ];
+
     status.textContent = `You have ${guessesLeft} guesses!`;
     restartBtn.style.display = 'none';
 
-    for(let i=1; i<=10; i++){
+    // Create cards from your numbers
+    customNumbers.forEach(num => {
       const card = document.createElement('div');
       card.classList.add('card');
-      card.textContent = i;
-      card.addEventListener('click', () => makeGuess(i));
+      card.textContent = num;
+      card.addEventListener('click', () => makeGuess(num));
       cardsContainer.appendChild(card);
-    }
+    });
   }
 
   function makeGuess(guess) {
-    if(guessesLeft <= 0) return;
+    if (guessesLeft <= 0) return;
+
     guessesLeft--;
 
-    if(guess === numberToGuess){
-      status.textContent = `😡 REMATCH! I DEMAND A REMATCH. The number was ${numberToGuess}!`;
+    if (guess === numberToGuess) {
+      status.textContent =
+        `😡 REMATCH! I DEMAND A REMATCH. The number was ${numberToGuess}!`;
       endGame();
-    } else if(guessesLeft > 0){
-      status.textContent = `Wrong! ${guessesLeft} guess${guessesLeft > 1 ? 'es' : ''} left.`;
+    } else if (guessesLeft > 0) {
+      status.textContent =
+        `Wrong! ${guessesLeft} guess${guessesLeft > 1 ? 'es' : ''} left.`;
     } else {
-      status.textContent = `😂 You're TRASH! Game Over! My number was ${numberToGuess}. ❌`;
+      status.textContent =
+        `😂 You're TRASH! Game Over! My number was ${numberToGuess}. ❌`;
       endGame();
     }
   }
@@ -160,7 +55,6 @@
   }
 
   restartBtn.addEventListener('click', initGame);
+
   initGame();
 </script>
-</body>
-</html>
