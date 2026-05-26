@@ -131,29 +131,7 @@
     status.textContent = `You have ${guessesLeft} guesses!`;
     restartBtn.style.display = 'none';
 
-const customNumbers = [7, 13, 22, 45, 66, 88, 99, 101, 202, 777];
-
-function initGame() {
-  cardsContainer.innerHTML = '';
-  guessesLeft = 3;
-
-  // Pick random number from YOUR list
-  numberToGuess = customNumbers[
-    Math.floor(Math.random() * customNumbers.length)
-  ];
-
-  status.textContent = `You have ${guessesLeft} guesses!`;
-  restartBtn.style.display = 'none';
-
-  // Create cards from YOUR numbers
-  customNumbers.forEach(num => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.textContent = num;
-    card.addEventListener('click', () => makeGuess(num));
-    cardsContainer.appendChild(card);
-  });
-}
+    for(let i=1; i<=10; i++){
       const card = document.createElement('div');
       card.classList.add('card');
       card.textContent = i;
