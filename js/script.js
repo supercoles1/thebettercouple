@@ -14,9 +14,7 @@ function updateCountdown() {
   document.getElementById("minutes").innerText = minutes;
   document.getElementById("seconds").innerText = seconds;
 
-  const endScreen = document.getElementById("endScreen");
-const endTitle = document.getElementById("endTitle");
-const endMessage = document.getElementById("endMessage");
+  
 }
 
 setInterval(updateCountdown, 1000);

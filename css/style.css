@@ -487,5 +487,46 @@ nav a:hover {
   .game-logo {
     width: 110px;
   }
+
+  .menu-page{
+    max-width:1200px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.menu-page h1{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:40px;
+    color:#d81b60;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.menu-section{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.menu-section h2{
+    color:#d81b60;
+    margin-bottom:15px;
+}
+
+.menu-section ul{
+    list-style:none;
+    padding:0;
+}
+
+.menu-section li{
+    padding:8px 0;
+    border-bottom:1px solid #eee;
+}
 }
 }

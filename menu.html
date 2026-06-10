@@ -5,27 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menu</title>
 
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=1" />
 </head>
 
 <body>
 
-<header class="navbar">
-  <div class="logo">
-    <img src="images/UsLogo.png" alt="Logo">
-  </div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/UsLogo.png" alt="Logo" />
+    </div>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html">Games</a>
-  </nav>
-</header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="menu.php" class="active">Menu</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<section class="page">
-  <img src="images/TVMenu.jpg" class="full-img" alt="Menu">
-</section>
+  <!-- HERO SECTION -->
+  <section class="menu-hero">
+    <h1>Our Menu</h1>
+    <p>Fresh food made daily</p>
+  </section>
+
+  <!-- MENU ITEMS -->
+  <section class="menu-container">
+
+    <div class="menu-item">
+      <h3>Cheeseburger</h3>
+      <p>Juicy beef patty, cheese, lettuce, tomato</p>
+      <span>$8.99</span>
+    </div>
+
+    <div class="menu-item">
+      <h3>Chicken Sandwich</h3>
+      <p>Crispy chicken, pickles, mayo</p>
+      <span>$7.99</span>
+    </div>
+
+    <div class="menu-item">
+      <h3>Fries</h3>
+      <p>Golden crispy fries</p>
+      <span>$3.49</span>
+    </div>
+
+    <div class="menu-item">
+      <h3>Milkshake</h3>
+      <p>Vanilla, chocolate, or strawberry</p>
+      <span>$4.99</span>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+  </footer>
 
 </body>
 </html>
