@@ -4,77 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🔌</title>
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="logo">
-    <img src="images/UsLogo.png" alt="Logo">
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html" class="active">Games</a>
-  </nav>
-</header>
 
 <link rel="stylesheet" href="css/style.css" />
 
 <style>
-
-  .game-page{
-  background: linear-gradient(
-    135deg,
-    #ff43e0,
-    #ff8bd7,
-    #ffc0cb
-  );
-}
-
-.scoreboard{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  width:90%;
-  max-width:700px;
-  margin-bottom:20px;
-}
-
-.score-box{
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(10px);
-  padding:15px 25px;
-  border-radius:20px;
-  min-width:120px;
-}
-
-.score-box h3{
-  margin:0;
-}
-
-.score-box span{
-  font-size:36px;
-  font-weight:bold;
-}
-
-.middle-box{
-  font-size:22px;
-  font-weight:bold;
-  text-shadow:0 0 15px white;
-}
-
-.board-card{
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(15px);
-  padding:20px;
-  border-radius:25px;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.game-status{
-  margin:15px 0;
-  font-size:22px;
-  font-weight:bold;
-}
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -203,55 +136,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-/* ===== ARCADE HUD ===== */
 
-.scoreboard{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  width:90%;
-  max-width:700px;
-  margin:15px 0;
-}
-
-.score-box{
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(10px);
-  padding:15px 25px;
-  border-radius:20px;
-  min-width:120px;
-}
-
-.score-box h3{
-  margin:0;
-  font-size:14px;
-}
-
-.score-box span{
-  font-size:34px;
-  font-weight:bold;
-}
-
-.middle-box{
-  font-size:22px;
-  font-weight:bold;
-  text-shadow:0 0 12px white;
-}
-
-.game-status{
-  margin:15px 0;
-  font-size:22px;
-  font-weight:bold;
-  color:white;
-}
-
-.board-card{
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(15px);
-  padding:20px;
-  border-radius:25px;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
 </style>
 </head>
 
@@ -278,56 +163,8 @@
       </p>
 
 <h1>Connect 4Ever 💞</h1>
-
-<div class="scoreboard">
-
-  <div class="score-box">
-    <h3>YOU</h3>
-    <span id="playerScore">0</span>
-  </div>
-
-  <div class="middle-box">
-    💞 CONNECT 4EVER 💞
-  </div>
-
-  <div class="score-box">
-    <h3>US</h3>
-    <span id="cpuScore">0</span>
-  </div>
-
-</div>
-
-<div id="status" class="game-status">
-Your Turn 💗
-</div>
-
-<div class="board-card">
-  <canvas id="gameCanvas"></canvas>
-</div><div class="scoreboard">
-
-  <div class="score-box">
-    <h3>YOU</h3>
-    <span id="playerScore">0</span>
-  </div>
-
-  <div class="middle-box">
-    💞 CONNECT 4EVER 💞
-  </div>
-
-  <div class="score-box">
-    <h3>US</h3>
-    <span id="cpuScore">0</span>
-  </div>
-
-</div>
-
-<div id="status" class="game-status">
-Your Turn 💗
-</div>
-
-<div class="board-card">
-  <canvas id="gameCanvas"></canvas>
-</div>
+<div class="status" id="status">Your moves: 0 | Our moves: 0</div>
+<canvas id="gameCanvas"></canvas>
 
 <!-- END SCREEN -->
 <div class="end-screen" id="endScreen">
@@ -352,8 +189,7 @@ let playerMoves = 0;
 let cpuMoves = 0;
 let playerTurn = true; // true when it's player's turn
 
-document.getElementById("playerScore").textContent = playerMoves;
-document.getElementById("cpuScore").textContent = cpuMoves;
+const statusText = document.getElementById("status");
 
 function resizeCanvas() {
   canvas.width = 350;
@@ -464,12 +300,11 @@ async function playerMove(col){
   if(grid[0][col]!==0) return; // Column full
 
   playerMoves++;
-statusText.textContent =
-"Bria & Maurice are thinking... 💞";
+  playerTurn = false; // end player's turn
   await dropPieceAnimated(col,1);
 
   if(checkWin(1)){
-    launchHearts();
+    winner = 1;
     gameOver = true;
     drawBoard();
     return;
@@ -493,7 +328,7 @@ async function cpuTurn(){
   await dropPieceAnimated(bestMove,2);
 
   if(checkWin(2)){
-    launchHearts();
+    winner = 2;
     gameOver = true;
     drawBoard();
     return;
@@ -504,37 +339,8 @@ async function cpuTurn(){
     gameOver = true;
   }
 
-statusText.textContent =
-"Your Turn 💗";
-  function launchHearts(){
-
-  for(let i=0;i<25;i++){
-
-    const heart=document.createElement("div");
-
-    heart.innerHTML="💗";
-
-    heart.style.position="fixed";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.top="-20px";
-    heart.style.fontSize="30px";
-    heart.style.zIndex="9999";
-
-    document.body.appendChild(heart);
-
-    heart.animate([
-      {transform:"translateY(0)"},
-      {transform:"translateY(110vh)"}
-    ],{
-      duration:3000,
-      easing:"linear"
-    });
-
-    setTimeout(()=>{
-      heart.remove();
-    },3000);
-  }
-}
+  playerTurn = true; // player's turn again
+  drawBoard();
 }
 
 function boardFull(){
