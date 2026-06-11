@@ -53,6 +53,15 @@ body {
   border-radius: 16px;
 }
 
+.menu-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
 /* HERO */
 .menu-hero {
   height: 40vh;
@@ -104,6 +113,7 @@ body {
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  font-family: cursive;
   transition: 0.3s;
 }
 
