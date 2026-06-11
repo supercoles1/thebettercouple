@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🪨📄✂️</title>
 
   <link rel="stylesheet" href="css/style.css" />
-</head>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <header class="navbar">
-
+  <div class="logo">
+    <img src="images/UsLogo.png" alt="Logo">
+  </div>
   <nav>
     <a href="index.html">Home</a>
     <a href="seating.html">Seating</a>
     <a href="menu.html">Menu</a>
-    <a href="games.html">Games</a>
+    <a href="games.html" class="active">Games</a>
   </nav>
 </header>
 
@@ -25,255 +25,424 @@
 <title>🪨📄✂️</title>
 <style>
   body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
-    background-size: 400% 400%;
-    animation: gradientMove 8s ease infinite;
-    color: white;
-    text-align: center;
-  }
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg,#ff43e0,#ffc0cb,#ff80bf);
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+  color: white;
+  text-align: center;
+  padding-top: 90px;
+}
 
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+@keyframes gradientMove {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
 
-  h1 {
-    text-shadow: 2px 2px 5px #ff0077;
-    margin-bottom: 10px;
-  }
+.game-card{
+  width:90%;
+  max-width:750px;
+  padding:30px;
+  border-radius:25px;
 
-  .logo {
-    width: 130px;
-    margin-bottom: 15px;
-  }
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(15px);
 
-  .buttons {
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
-  }
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
 
-  .buttons button {
-    background: rgba(255,255,255,0.2);
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 15px 25px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: white;
-  }
+.logo{
+  width:180px;
+  margin-bottom:10px;
+  filter:drop-shadow(0 0 15px rgba(255,255,255,.4));
+}
 
-  .buttons button:hover {
-    background: rgba(255,255,255,0.4);
-    transform: scale(1.1);
-  }
+h1{
+  margin:10px 0;
+  text-shadow:0 0 15px #ff0099;
+}
 
-  .status {
-    font-size: 18px;
-    text-shadow: 1px 1px 4px #ff0077;
-    min-height: 140px;
-  }
+.game-quote{
+  max-width:550px;
+  margin:auto;
+  margin-bottom:20px;
+  font-style:italic;
+}
 
-  .animate-choice {
-    display: inline-block;
-    font-size: 50px;
-    margin: 0 10px;
-    opacity: 0;
-    transform: translateY(-50px) rotate(0deg);
-    animation: dropIn 0.6s forwards;
-  }
+.scoreboard{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
 
-  @keyframes dropIn {
-    0% { opacity: 0; transform: translateY(-50px) rotate(0deg); }
-    50% { opacity: 1; transform: translateY(10px) rotate(360deg); }
-    100% { opacity: 1; transform: translateY(0px) rotate(720deg); }
-  }
+.score-box{
+  background:rgba(255,255,255,.15);
+  border-radius:15px;
+  padding:15px;
+  min-width:120px;
+}
 
-  .player-label {
-    color: #00b3ff;
-    font-weight: bold;
-    margin-right: 5px;
-  }
+.score-box h3{
+  margin:0;
+  font-size:14px;
+}
 
-  .cpu-label {
-    color: #ffff66;
-    font-weight: bold;
-    margin-right: 5px;
-  }
+.score-box span{
+  font-size:42px;
+  font-weight:bold;
+}
 
-  #resetBtn {
-    margin-top: 15px;
-    padding: 10px 25px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background: #ff66ff;
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    transition: all 0.2s;
-  }
+.round-box{
+  font-size:22px;
+  font-weight:bold;
+}
 
-  #resetBtn:hover {
-    background: #ff33cc;
-  }
+.battle-area{
+  min-height:160px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.vs{
+  font-size:70px;
+  margin:10px 0;
+}
+
+.choice{
+  font-size:80px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+.buttons button{
+  width:110px;
+  height:110px;
+  border:none;
+  border-radius:20px;
+  font-size:50px;
+  cursor:pointer;
+
+  background:rgba(255,255,255,.15);
+  color:white;
+
+  transition:.25s;
+}
+
+.buttons button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px white;
+}
+
+#resetBtn{
+  margin-top:20px;
+  border:none;
+  padding:12px 30px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.winner-banner{
+  margin-top:15px;
+  font-size:24px;
+  font-weight:bold;
+  text-shadow:0 0 10px white;
+}
+
+.victory-screen{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.75);
+  z-index:9999;
+}
+
+.victory-box{
+  background:white;
+  color:#333;
+  padding:30px;
+  border-radius:20px;
+  width:320px;
+  text-align:center;
+}
+
+.victory-box img{
+  width:130px;
+}
+
+.victory-box h2{
+  color:#ff0099;
+}
 </style>
 </head>
-<body class="game-page">
+<body>
+<div class="game-card">
 
-<img src="images/MyFunkoPop.png" alt="BreezyBre Logo" class="logo">
-  
-<p class="game-quote">
-          "Rock, paper, scissors—one on one?
-          Say less. I’ve already won in my head… I’m just waiting on you to catch up."
-        <br><br>
-        -Maurice
-      </p>
+<div class="scoreboard">
 
-      <h1>Rock-Paper-Scissors 💞</h1>
+  <div class="score-box">
+    <h3>YOU</h3>
+    <span id="playerScore">0</span>
+  </div>
 
-<div class="buttons">
-  <button onclick="playerChoice('rock')">🪨 Rock</button>
-  <button onclick="playerChoice('paper')">📄 Paper</button>
-  <button onclick="playerChoice('scissors')">✂️ Scissors</button>
+  <div class="round-box">
+    ROUND <span id="roundNum">1</span>/5
+  </div>
+
+  <div class="score-box">
+    <h3>MAURICE</h3>
+    <span id="cpuScore">0</span>
+  </div>
+
 </div>
 
-<div class="status" id="status">Best of 5: Make your move!</div>
+<img src="images/MyFunkoPop.png" alt="Funko" class="logo">
+
+<p class="game-quote">
+"Rock, paper, scissors—one on one?
+Say less. I’ve already won in my head…
+I'm just waiting on you to catch up."
+<br><br>
+-Maurice
+</p>
+
+<h1>🪨 ROCK • PAPER • SCISSORS ✂️</h1>
+
+<div class="battle-area" id="status">
+Make your move!
+</div>
+
+<div class="buttons">
+  <button onclick="playerChoice('rock')">🪨</button>
+  <button onclick="playerChoice('paper')">📄</button>
+  <button onclick="playerChoice('scissors')">✂️</button>
+</div>
+
 <button id="resetBtn" onclick="resetGame()">Reset Game</button>
+
+</div>
+
+<div class="victory-screen" id="victoryScreen">
+
+  <div class="victory-box">
+
+    <img src="images/MyFunkoPop.png">
+
+    <h2 id="winnerTitle">Winner</h2>
+
+    <p id="winnerMessage"></p>
+
+    <button onclick="resetGame()">
+      Play Again
+    </button>
+
+  </div>
+
+</div>
 
 <script>
 const status = document.getElementById("status");
 
-let playerHistory = [];
-let aiHistory = [];
 let playerScore = 0;
 let aiScore = 0;
 let round = 1;
+
 const maxRounds = 5;
 
-// Hard AI: tries to predict your moves
-function aiChoice() {
-  if (playerHistory.length < 2) {
-    const choices = ['rock', 'paper', 'scissors'];
-    const choice = choices[Math.floor(Math.random()*3)];
-    aiHistory.push(choice);
-    return choice;
-  }
+function aiChoice(){
 
-  const lastMove = playerHistory[playerHistory.length - 1];
-  const secondLastMove = playerHistory[playerHistory.length - 2];
+  const choices = ['rock','paper','scissors'];
 
-  let predicted;
-  if (lastMove === secondLastMove) {
-    if(lastMove==='rock') predicted='paper';
-    if(lastMove==='paper') predicted='scissors';
-    if(lastMove==='scissors') predicted='rock';
-  } else {
-    const choices = ['rock', 'paper', 'scissors'];
-    predicted = choices[Math.floor(Math.random()*3)];
-  }
-
-  aiHistory.push(predicted);
-  return predicted;
+  return choices[
+    Math.floor(Math.random()*3)
+  ];
 }
 
-// Disable buttons while animating
-function disableButtons(state) {
-  document.querySelectorAll(".buttons button").forEach(btn => btn.disabled = state);
+function disableButtons(state){
+
+  document
+    .querySelectorAll(".buttons button")
+    .forEach(btn => btn.disabled = state);
 }
 
-async function playerChoice(choice) {
+async function playerChoice(choice){
+
   if(round > maxRounds) return;
-  disableButtons(true);
-  const ai = aiChoice();
-  playerHistory.push(choice);
 
-  // Animate choices
+  disableButtons(true);
+
+  const ai = aiChoice();
+
   status.innerHTML = `
-    <div><span class="player-label">You:</span><span class="animate-choice">${choiceEmoji(choice)}</span></div>
-    <div><span class="cpu-label">Me:</span><span class="animate-choice">${choiceEmoji(ai)}</span></div>
+  <h2>🪨</h2>
   `;
 
-  // Wait for animation
-  await new Promise(resolve => setTimeout(resolve, 700));
-
-  let result = "";
-  if(choice === ai) result = "Draw!";
-  else if(
-    (choice === 'rock' && ai === 'scissors') ||
-    (choice === 'paper' && ai === 'rock') ||
-    (choice === 'scissors' && ai === 'paper')
-  ) {
-    result = "You Win this round!";
-    playerScore++;
-  } else {
-    result = "I Wins this round!";
-    aiScore++;
-  }
+  await sleep(500);
 
   status.innerHTML = `
-    <div><span class="player-label">You:</span>${choiceEmoji(choice)}</div>
-    <div><span class="cpu-label">Me:</span>${choiceEmoji(ai)}</div>
-    <div><b>${result}</b></div>
-    <div>Score — You: ${playerScore} | Me: ${aiScore}</div>
-    <div>Round ${round} of ${maxRounds}</div>
+  <h2>📄</h2>
+  `;
+
+  await sleep(500);
+
+  status.innerHTML = `
+  <h2>✂️</h2>
+  `;
+
+  await sleep(500);
+
+  status.innerHTML = `
+  <div class="choice">${emoji(choice)}</div>
+  <div class="vs">VS</div>
+  <div class="choice">${emoji(ai)}</div>
+  `;
+
+  await sleep(600);
+
+  let result="";
+
+  if(choice===ai){
+
+    result="🤝 DRAW";
+
+  } else if(
+
+    (choice==="rock" && ai==="scissors") ||
+    (choice==="paper" && ai==="rock") ||
+    (choice==="scissors" && ai==="paper")
+
+  ){
+
+    playerScore++;
+
+    result="🎉 YOU WIN THIS ROUND";
+
+  } else {
+
+    aiScore++;
+
+    result="😎 MAURICE WINS THIS ROUND";
+
+  }
+
+  document.getElementById("playerScore")
+  .textContent = playerScore;
+
+  document.getElementById("cpuScore")
+  .textContent = aiScore;
+
+  status.innerHTML += `
+  <div class="winner-banner">
+  ${result}
+  </div>
   `;
 
   round++;
+
+  document.getElementById("roundNum")
+  .textContent =
+  Math.min(round,maxRounds);
+
   disableButtons(false);
 
-  // If game over
   if(round > maxRounds){
-    disableButtons(true);
-    setTimeout(() => {
-      let final = "";
-      if(playerScore > aiScore) final = "🎉 You got me!";
-      else if(aiScore > playerScore) final = "I am the Champion!";
-      else final = "🤝 It's a Tie!";
 
-      // Make winner visible
-      status.innerHTML += `
-        <div style="
-          margin-top:15px; 
-          padding:10px; 
-          font-size:22px; 
-          font-weight:bold; 
-          color:#fff; 
-          background: rgba(0,0,0,0.4); 
-          border: 2px solid #fff; 
-          border-radius: 10px;
-          box-shadow: 0 0 10px #ff66ff;
-        ">
-          ${final}
-        </div>
-      `;
-    }, 500);
+    disableButtons(true);
+
+    setTimeout(showWinner,1000);
   }
 }
 
-function choiceEmoji(choice) {
-  if(choice==='rock') return '🪨';
-  if(choice==='paper') return '📄';
-  if(choice==='scissors') return '✂️';
+function showWinner(){
+
+  let title="";
+  let msg="";
+
+  if(playerScore > aiScore){
+
+    title="🏆 CHAMPION";
+
+    msg="You defeated Maurice!";
+
+  } else if(aiScore > playerScore){
+
+    title="😎 MAURICE WINS";
+
+    msg="I am H.I.M.";
+
+  } else {
+
+    title="🤝 TIE";
+
+    msg="Nobody wins today.";
+  }
+
+  document
+  .getElementById("winnerTitle")
+  .textContent = title;
+
+  document
+  .getElementById("winnerMessage")
+  .textContent = msg;
+
+  document
+  .getElementById("victoryScreen")
+  .style.display = "flex";
 }
 
-// Reset Game Function
-function resetGame() {
-  playerHistory = [];
-  aiHistory = [];
+function emoji(choice){
+
+  if(choice==="rock") return "🪨";
+
+  if(choice==="paper") return "📄";
+
+  return "✂️";
+}
+
+function sleep(ms){
+
+  return new Promise(resolve =>
+    setTimeout(resolve,ms)
+  );
+}
+
+function resetGame(){
+
   playerScore = 0;
   aiScore = 0;
   round = 1;
-  status.textContent = "Best of 5: Make your move!";
+
+  document.getElementById("playerScore")
+  .textContent = "0";
+
+  document.getElementById("cpuScore")
+  .textContent = "0";
+
+  document.getElementById("roundNum")
+  .textContent = "1";
+
+  status.innerHTML =
+  "Make your move!";
+
+  document.getElementById("victoryScreen")
+  .style.display = "none";
+
   disableButtons(false);
 }
 </script>

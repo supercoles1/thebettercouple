@@ -3,9 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❌⭕❌</title>
+<title>❌💛❌</title>
 
 <link rel="stylesheet" href="css/style.css" />
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <img src="images/UsLogo.png" alt="Logo">
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="seating.html">Seating</a>
+    <a href="menu.html">Menu</a>
+    <a href="games.html" class="active">Games</a>
+  </nav>
+</header>
 
 <style>
   body {
@@ -144,7 +156,7 @@
 <h1>Tic Tac Toe</h1>
 
 <div id="game"></div>
-<div id="status">Your turn (X)</div>
+<div id="status">Your turn (❌)</div>
 <button onclick="restartGame()">Restart</button>
 
 <!-- END SCREEN -->
@@ -157,62 +169,61 @@
 </div>
 
 <script>
-  const gameContainer = document.getElementById("game");
-  const statusText = document.getElementById("status");
+const gameContainer = document.getElementById("game");
+const statusText = document.getElementById("status");
 
-  const endScreen = document.getElementById("endScreen");
-  const endTitle = document.getElementById("endTitle");
-  const endMessage = document.getElementById("endMessage");
+const endScreen = document.getElementById("endScreen");
+const endTitle = document.getElementById("endTitle");
+const endMessage = document.getElementById("endMessage");
 
-  let board = ["", "", "", "", "", "", "", "", ""];
-  let currentPlayer = "X";
-  let gameActive = true;
+let board = ["", "", "", "", "", "", "", "", ""];
+let currentPlayer = "❌";
+let gameActive = true;
 
-  function showEndScreen(title, message) {
-    endTitle.textContent = title;
-    endMessage.textContent = message;
-    endScreen.style.display = "flex";
+function showEndScreen(title, message) {
+  endTitle.textContent = title;
+  endMessage.textContent = message;
+  endScreen.style.display = "flex";
+}
+
+for (let i = 0; i < 9; i++) {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
+  cell.dataset.index = i;
+  cell.addEventListener("click", handleCellClick);
+  gameContainer.appendChild(cell);
+}
+
+function handleCellClick(e) {
+  const index = e.target.dataset.index;
+
+  if (board[index] !== "" || !gameActive) return;
+
+  makeMove(index, "❌");
+
+  if (checkWinner(board, "❌")) {
+    gameActive = false;
+    showEndScreen("🎉 You Win!", "I wasn't even trying!");
+    return;
   }
 
-  for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.dataset.index = i;
-    cell.addEventListener("click", handleCellClick);
-    gameContainer.appendChild(cell);
+  if (!board.includes("")) {
+    gameActive = false;
+    showEndScreen("😐 Draw!", "Nobody wins!");
+    return;
   }
 
-  function handleCellClick(e) {
-    const index = e.target.dataset.index;
-    if (board[index] !== "" || !gameActive) return;
+  statusText.textContent = "Bria is thinking...";
+  setTimeout(cpuMove, 800);
+}
 
-    makeMove(index, currentPlayer);
-
-    if (checkWinner(board, currentPlayer)) {
-      gameActive = false;
-      showEndScreen("🎉 Winner!", `${currentPlayer} wins the game!`);
-      return;
-    }
-
-    if (!board.includes("")) {
-      gameActive = false;
-      showEndScreen("😐 Draw!", "No more moves left!");
-      return;
-    }
-
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusText.textContent = "Bria is thinking...";
-    setTimeout(cpuMove, 800);
-  }
-
-  function cpuMove() {
+function cpuMove() {
   let bestScore = -Infinity;
   let move;
 
-  // HARD AI (tries best move, not first available)
   for (let i = 0; i < 9; i++) {
     if (board[i] === "") {
-      board[i] = "O";
+      board[i] = "💛";
       let score = minimax(board, 0, false, -Infinity, Infinity);
       board[i] = "";
 
@@ -223,11 +234,11 @@
     }
   }
 
-  makeMove(move, "O");
+  makeMove(move, "💛");
 
-  if (checkWinner(board, "O")) {
+  if (checkWinner(board, "💛")) {
     gameActive = false;
-    showEndScreen("Dang! I Win!", "Beauty and Brains 💅");
+    showEndScreen("💛 Bria Wins!", "Beauty and Brains 💅");
     return;
   }
 
@@ -237,39 +248,52 @@
     return;
   }
 
-  currentPlayer = "X";
-  statusText.textContent = "Your turn (X)";
+  statusText.textContent = "Your turn (❌)";
 }
 
-  function makeMove(index, player) {
-    board[index] = player;
-    gameContainer.children[index].textContent = player;
+function makeMove(index, player) {
+  board[index] = player;
+
+  const cell = gameContainer.children[index];
+  cell.textContent = player;
+
+  if (player === "💛") {
+    cell.style.color = "#FFD700";
+  } else {
+    cell.style.color = "#FFFFFF";
   }
+}
 
-  function checkWinner(b, p) {
-    const winPatterns = [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[2,4,6]
-    ];
+function checkWinner(b, p) {
+  const winPatterns = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
 
-    return winPatterns.some(pattern =>
-      pattern.every(i => b[i] === p)
-    );
-  }
+  return winPatterns.some(pattern =>
+    pattern.every(i => b[i] === p)
+  );
+}
 
-  function restartGame() {
-    board = ["", "", "", "", "", "", "", "", ""];
-    gameActive = true;
-    currentPlayer = "X";
-    statusText.textContent = "Your turn (X)";
-    [...gameContainer.children].forEach(c => c.textContent = "");
-    endScreen.style.display = "none";
-  }
+function restartGame() {
+  board = ["", "", "", "", "", "", "", "", ""];
+  gameActive = true;
 
-  function minimax(newBoard, depth, isMaximizing, alpha, beta) {
-  if (checkWinner(newBoard, "O")) return 10 - depth;
-  if (checkWinner(newBoard, "X")) return depth - 10;
+  statusText.textContent = "Your turn (❌)";
+
+  [...gameContainer.children].forEach(cell => {
+    cell.textContent = "";
+    cell.style.color = "white";
+  });
+
+  endScreen.style.display = "none";
+}
+
+function minimax(newBoard, depth, isMaximizing, alpha, beta) {
+
+  if (checkWinner(newBoard, "💛")) return 10 - depth;
+  if (checkWinner(newBoard, "❌")) return depth - 10;
   if (!newBoard.includes("")) return 0;
 
   if (isMaximizing) {
@@ -277,33 +301,55 @@
 
     for (let i = 0; i < 9; i++) {
       if (newBoard[i] === "") {
-        newBoard[i] = "O";
-        let score = minimax(newBoard, depth + 1, false, alpha, beta);
+        newBoard[i] = "💛";
+
+        let score = minimax(
+          newBoard,
+          depth + 1,
+          false,
+          alpha,
+          beta
+        );
+
         newBoard[i] = "";
-        best = Math.max(score, best);
+
+        best = Math.max(best, score);
         alpha = Math.max(alpha, score);
+
         if (beta <= alpha) break;
       }
     }
+
     return best;
 
   } else {
+
     let best = Infinity;
 
     for (let i = 0; i < 9; i++) {
       if (newBoard[i] === "") {
-        newBoard[i] = "X";
-        let score = minimax(newBoard, depth + 1, true, alpha, beta);
+        newBoard[i] = "❌";
+
+        let score = minimax(
+          newBoard,
+          depth + 1,
+          true,
+          alpha,
+          beta
+        );
+
         newBoard[i] = "";
-        best = Math.min(score, best);
+
+        best = Math.min(best, score);
         beta = Math.min(beta, score);
+
         if (beta <= alpha) break;
       }
     }
+
     return best;
   }
 }
-
 </script>
 
 </body>
