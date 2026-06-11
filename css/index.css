@@ -1,0 +1,148 @@
+/* =========================
+   HERO SECTION MODERN APP
+========================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 120px 8%;
+  background-image: url('../images/Reminder.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+}
+
+/* Hero Card */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 40px;
+  max-width: 1100px;
+  align-items: center;
+  background: rgba(255, 6, 189, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  flex-wrap: wrap;
+}
+
+.hero-photo img {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.hero-photo img:hover {
+  transform: scale(1.02);
+}
+
+.hero-text {
+  flex: 1;
+  color: #222;
+}
+
+.sub-title {
+  font-size: 18px;
+  color: #fffb00;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: cursive;
+}
+
+.welcome-text {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 12px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ff00b7;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: white;
+  margin-top: 40px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-photo img {
+    width: 240px;
+    margin-bottom: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-photo img {
+    width: 180px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .sub-title {
+    font-size: 16px;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+  }
+
+  .navbar {
+    padding: 10px 4%;
+  }
+}

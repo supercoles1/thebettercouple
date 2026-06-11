@@ -1,71 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Bria & Maurice</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css?v=1" />
+  <link rel="stylesheet" href="css/menu.css">
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="images/UsLogo.png" alt="Logo" />
-    </div>
+<!-- NAV -->
+<header class="navbar">
+  <div class="logo">
+    <img src="images/UsLogo.png" alt="Logo">
+  </div>
 
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="menu.php" class="active">Menu</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="contact.php">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="seating.html">Seating</a>
+    <a href="menu.html" class="active">Menu</a>
+    <a href="games.html">Games</a>
+  </nav>
+</header>
 
-  <!-- HERO SECTION -->
-  <section class="menu-hero">
-    <h1>Our Menu</h1>
-    <p>Fresh food made daily</p>
-  </section>
+<!-- HERO -->
+ <section class="menu-grid"></section>
+<section class="menu-banner">
+  <img src="images/TVMenu.JPG" alt="Dinner Menu" class="menu-banner-img">
+</section>
 
-  <!-- MENU ITEMS -->
-  <section class="menu-container">
+</section>
 
-    <div class="menu-item">
-      <h3>Cheeseburger</h3>
-      <p>Juicy beef patty, cheese, lettuce, tomato</p>
-      <span>$8.99</span>
-    </div>
+<!-- MENU GRID -->
+<section class="menu-grid">
 
-    <div class="menu-item">
-      <h3>Chicken Sandwich</h3>
-      <p>Crispy chicken, pickles, mayo</p>
-      <span>$7.99</span>
-    </div>
+  <!-- ENTREES -->
+  <div class="menu-card">
+    <h2>🍽 Entrees</h2>
+    <img src="images/entrees.jpg" alt="Entrees" class="menu-img">
+    <ul>
+      <li>BBQ Meatballs</li>
+      <li>Chicken Wings / Strips</li>
+      <li>Fried Fish</li>
+    </ul>
+  </div>
 
-    <div class="menu-item">
-      <h3>Fries</h3>
-      <p>Golden crispy fries</p>
-      <span>$3.49</span>
-    </div>
+  <!-- APPETIZERS -->
+  <div class="menu-card">
+    <h2>🥗 Appetizers</h2>
+    <img src="images/appetizers.jpg" alt="Appetizers" class="menu-img">
+    <ul>
+      <li>Salad</li>
+      <li>Fruit Tray</li>
+    </ul>
+  </div>
 
-    <div class="menu-item">
-      <h3>Milkshake</h3>
-      <p>Vanilla, chocolate, or strawberry</p>
-      <span>$4.99</span>
-    </div>
+  <!-- SIDES -->
+  <div class="menu-card">
+    <h2>🍠 Sides</h2>
+    <img src="images/sides.jpg" alt="Sides" class="menu-img">
+    <ul>
+      <li>Mac & Cheese</li>
+      <li>Candied Yams</li>
+      <li>String Beans</li>
+    </ul>
+  </div>
 
-  </section>
+  <!-- DESSERT -->
+  <div class="menu-card">
+    <h2>🍰 Dessert</h2>
+    <img src="images/dessert.jpg" alt="Dessert" class="menu-img">
+    <ul>
+      <li>Cookies</li>
+      <li>Wedding Cake</li>
+    </ul>
+  </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- DRINKS -->
+  <div class="menu-card">
+    <h2>🥤 Drinks</h2>
+    <img src="images/drinks.jpg" alt="Drinks" class="menu-img">
+    <ul>
+      <li>Lemonade</li>
+      <li>Sweet Tea</li>
+    </ul>
+  </div>
 
-  </footer>
+  <!-- ALCOHOL -->
+  <div class="menu-card alcohol">
+    <h2>🍸 ALCOHOL (21+)</h2>
+    <img src="images/alcohol.jpg" alt="21+ Drinks" class="menu-img">
+    <ul>
+      <li>Fruity Lemon Drop Shooters</li>
+      <li>Sparkling Mixes</li>
+    </ul>
+  </div>
+
+</section>
+
+<footer class="footer">
+  © 2026 Bria & Maurice Celebration Menu
+</footer>
 
 </body>
 </html>
