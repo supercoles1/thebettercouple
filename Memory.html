@@ -1,191 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🧠</title>
-
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="logo">
-    <img src="images/UsLogo.png" alt="Logo">
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html" class="active">Games</a>
-  </nav>
-</header>
 
 <head>
   <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forever Love Memory Match 💖</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: auto;
-      overflow-x: hidden;
-      overflow-y: auto;
-      background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
-      background-size: 400% 400%;
-      animation: gradientMove 8s ease infinite;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧠</title>
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    h1 {
-      color: white;
-      text-shadow: 2px 2px 5px #ff0077;
-      font-size: 24px;
-      margin: 10px 0;
-      text-align: center;
-    }
-
-    .logo {
-      width: 130px;
-      margin-top: 15px;
-    }
-
-    .game-container {
-      display: grid;
-      grid-template-columns: repeat(4, 60px);
-      grid-gap: 10px;
-      margin-top: 15px;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
-    }
-
-    .card {
-      width: 60px;
-      height: 60px;
-      background: white;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .card.flipped {
-      background: #ff43e0;
-      color: white;
-      transform: scale(1.05);
-    }
-
-    .status {
-      margin-top: 10px;
-      color: white;
-      font-weight: 600;
-      text-shadow: 1px 1px 4px #ff0077;
-      font-size: 16px;
-    }
-
-    button {
-      margin-top: 12px;
-      padding: 8px 18px;
-      background: #ff43e0;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 15px;
-      box-shadow: 0 4px 10px rgba(255, 0, 128, 0.3);
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      background: #ff66ff;
-    }
-
-    /* WIN/LOSE SCREEN */
-    .end-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.65);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(4px);
-    }
-
-    .end-box {
-      background: white;
-      padding: 25px;
-      text-align: center;
-      border-radius: 12px;
-      width: 80%;
-      max-width: 300px;
-      box-shadow: 0 0 20px rgba(255, 0, 170, 0.6);
-      animation: pop 0.4s ease;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.7); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .end-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #ff0099;
-    }
-
-    .end-msg {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #444;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="game-page">
 
-<img src="images/BreezyUFC.png" alt="BreezyBre Logo" class="logo">
-  
-<p class="game-quote">
-          "Think you can beat me at a game that tests your memory?
-        Yeah… I doubt it. I’m basically undefeated—even elephants don’t want the smoke.""
-        <br><br>
-        -Breon
-      </p>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/UsLogo.png" alt="Logo">
+    </div>
+
+    <nav>
+  <a href="index.html">Home</a>
+  <a href="seating.html">Seating</a>
+  <a href="menu.html">Menu</a>
+  <a href="games.html">Games</a>
+
+  <a href="Tik-Tac-Toe.html">💛❌</a>
+  <a href="Connect4Ever.html">💞</a>
+  <a href="Rock-Paper-Scissors.html">🪨📄✂️</a>
+  <a href="GuesstheNumber.html">🔢</a>
+</nav>
+
+  </header>
+
+  <img src="images/BreezyUFC.png" class="game-logo">
+
+  <p class="game-quote">
+    "Think you can beat me at a game that tests your memory?
+    Yeah… I doubt it. I'm basically undefeated—even elephants don't want the smoke."
+    <br><br>
+    -Breon
+  </p>
+
   <h1>Forever Love Memory Match 💞</h1>
-  <div class="status" id="status">Moves: 0 / 10</div>
 
-  <div class="game-container" id="game"></div>
+  <div class="status" id="status">
+    Moves: 0 / 10
+  </div>
 
-  <button onclick="restartGame()">💘 Restart</button>
+  <div class="game-container" id="game">
+  12 cards
+</div>
+
+  <button class="restart-btn" onclick="restartGame()">
+    💘 Restart
+  </button>
 
   <!-- WIN / LOSE SCREEN -->
   <div class="end-screen" id="endScreen">
     <div class="end-box">
       <div class="end-title" id="endTitle"></div>
-      <div class="end-msg" id="endMessage"></div>
+      <div class="end-message" id="endMessage"></div>
       <button onclick="restartGame()">🔄 Play Again</button>
     </div>
   </div>
 
   <script>
-    const emojis = ["💋", "💍", "💌", "💛", "🌹", "💞", "💏", "💘"];
+
+    
+    const emojis = ["💋", "💍", "💌", "💛", "🌹", "💘"];
     let cards = [...emojis, ...emojis];
 
     let flippedCards = [];

@@ -5,148 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>❌💛❌</title>
 
-<link rel="stylesheet" href="css/style.css" />
-<!-- NAVBAR -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="game-page">
+
 <header class="navbar">
   <div class="logo">
     <img src="images/UsLogo.png" alt="Logo">
   </div>
+
   <nav>
-    <a href="index.html">Home</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html" class="active">Games</a>
-  </nav>
+  <a href="index.html">Home</a>
+  <a href="seating.html">Seating</a>
+  <a href="menu.html">Menu</a>
+  <a href="games.html">Games</a>
+
+  <a href="Connect4Ever.html">💞</a>
+  <a href="Memory.html">🧠</a>
+  <a href="Rock-Paper-Scissors.html">🪨📄✂️</a>
+  <a href="GuesstheNumber.html">🔢</a>
+</nav>
+
 </header>
 
-<style>
-  body {
-    background: linear-gradient(45deg, #ff43e0, #ffc0cb, #ff80bf);
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding-top: 20px;
-    overflow-x: hidden;
-  }
-
-  img.logo {
-    width: 150px;
-    margin-bottom: 15px;
-  }
-
-  h1 {
-    margin: 5px;
-    color: white;
-    font-size: 22px;
-  }
-
-  #game {
-    display: grid;
-    grid-template-columns: repeat(3, 70px);
-    grid-template-rows: repeat(3, 70px);
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .cell {
-    width: 70px;
-    height: 70px;
-    background: #ff43e0;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 38px;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-
-  .cell:hover {
-    transform: scale(1.05);
-  }
-
-  #status {
-    margin-top: 15px;
-    font-size: 16px;
-    color: white;
-  }
-
-  button {
-    margin-top: 15px;
-    padding: 8px 16px;
-    border: none;
-    background: #333;
-    color: #fff;
-    font-size: 14px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background: #555;
-  }
-
-  /* =========================
-     MEMORY STYLE END SCREEN
-  ========================== */
-
-  .end-screen {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(4px);
-    z-index: 999;
-  }
-
-  .end-box {
-    background: white;
-    padding: 25px;
-    text-align: center;
-    border-radius: 12px;
-    width: 80%;
-    max-width: 300px;
-    box-shadow: 0 0 20px rgba(255, 0, 170, 0.6);
-    animation: pop 0.4s ease;
-  }
-
-  @keyframes pop {
-    0% { transform: scale(0.7); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  .end-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #ff0099;
-  }
-
-  .end-msg {
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: #444;
-  }
-
-  .end-box button {
-    background: #ff43e0;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-</style>
-</head>
-
-<body>
-
-<img src="images/HerFunkoPop.png" class="logo">
+<div class="game-card">
+<img src="images/HerFunkoPop.png" class="game-logo">
 
 <p class="game-quote">
   "Tic-tac-toe? I’ll let you go first… not because I have to, but because it makes the ending more embarrassing for you."
