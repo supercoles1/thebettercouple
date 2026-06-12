@@ -139,7 +139,7 @@ nav a:hover{
 
 .game-card{
   width:90%;
-  max-width:1050px;
+  max-width:750px;
   padding:30px;
   border-radius:25px;
 
@@ -147,6 +147,14 @@ nav a:hover{
   backdrop-filter:blur(15px);
 
   box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  margin:0 auto;
 }
 
 /* =========================
@@ -157,9 +165,24 @@ nav a:hover{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  width:90%;
-  max-width:700px;
-  margin-bottom:20px;
+  gap:8px;
+}
+
+.score-box{
+  min-width:70px;
+  padding:8px;
+}
+
+.score-box span{
+  font-size:24px;
+}
+
+.score-box h3{
+  font-size:12px;
+}
+
+.round-box{
+  font-size:14px;
 }
 
 .score-box{
@@ -311,3 +334,37 @@ nav a:hover{
   margin:0 5px;
 }
 
+/* =========================
+   UNIVERSAL GAME CENTERING
+========================= */
+
+canvas{
+  display:block;
+  margin:20px auto;
+  max-width:100%;
+  height:auto;
+}
+
+#gameCanvas{
+  width:100%;
+  max-width:350px;
+}
+
+#game{
+  margin:20px auto;
+}
+
+.memory-grid,
+.cards-grid,
+.board,
+.game-board{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+}

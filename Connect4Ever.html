@@ -86,7 +86,10 @@ let playerTurn = true; // true when it's player's turn
 const statusText = document.getElementById("status");
 
 function resizeCanvas() {
-  canvas.width = 350;
+  canvas.width = Math.min(
+  document.querySelector(".game-card").clientWidth - 40,
+  350
+);
   canvas.height = (canvas.width / cols) * rows;
   cellSize = canvas.width / cols;
   drawBoard();
