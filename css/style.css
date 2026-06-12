@@ -47,6 +47,40 @@ nav a:hover{
    GAME PAGE
 ========================= */
 
+#game{
+  display:grid !important;
+  grid-template-columns:repeat(3,65px);
+  gap:5px;
+  justify-content:center;
+  margin:10px auto;
+}
+
+.cell{
+  width:65px;
+  height:65px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+
+  border-radius:15px;
+
+  font-size:34px;
+  font-weight:bold;
+  color:white;
+
+  cursor:pointer;
+  transition:.2s;
+}
+
+.cell:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,.25);
+}
+
 .game-page{
   margin:0;
   min-height:100vh;
@@ -105,7 +139,7 @@ nav a:hover{
 
 .game-card{
   width:90%;
-  max-width:750px;
+  max-width:1050px;
   padding:30px;
   border-radius:25px;
 
@@ -277,225 +311,3 @@ nav a:hover{
   margin:0 5px;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:500px){
-
-  .logo img{
-    height:22px;
-  }
-
-  .navbar{
-    padding:12px 5%;
-  }
-
-  nav a{
-    font-size:11px;
-    margin-left:8px;
-  }
-
-  .game-page{
-    padding-top:110px;
-  }
-
-  .game-page h1{
-    font-size:2rem;
-  }
-
-  .game-logo{
-    width:110px;
-  }
-
-  .game-quote{
-    font-size:14px;
-    line-height:1.5;
-  }
-
-  .scoreboard{
-    flex-direction:column;
-    gap:10px;
-  }
-}
-
-/* TIC TAC TOE */
-
-#game{
-  display:grid;
-  grid-template-columns:repeat(3,100px);
-  gap:10px;
-  justify-content:center;
-  margin:20px auto;
-}
-
-.cell{
-  width:100px;
-  height:100px;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(10px);
-
-  border-radius:20px;
-
-  font-size:50px;
-  font-weight:bold;
-
-  cursor:pointer;
-
-  transition:.2s;
-}
-
-.cell:hover{
-  transform:scale(1.05);
-  background:rgba(255,255,255,.25);
-}
-
-#gameCanvas{
-  width:350px;
-  max-width:95vw;
-  border-radius:15px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(10px);
-  cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-
-.game-container{
-  display:grid;
-  grid-template-columns:repeat(4, 60px);
-  gap:10px;
-  margin-top:15px;
-  padding:15px;
-  border-radius:15px;
-  background:rgba(255,255,255,.15);
-}
-
-.card{
-  width:60px;
-  height:60px;
-  background:white;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.6rem;
-  cursor:pointer;
-  transition:.2s;
-  color:transparent;
-}
-
-.card.flipped{
-  background:#ff43e0;
-  color:white;
-  transform:scale(1.05);
-}
-
-/* =========================
-   MEMORY MATCH GAME
-========================= */
-
-.game-container{
-  display:grid;
-  grid-template-columns:repeat(4,70px);
-  gap:12px;
-  margin-top:20px;
-  justify-content:center;
-
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(15px);
-
-  padding:20px;
-  border-radius:20px;
-}
-
-.card{
-  width:70px;
-  height:70px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:white;
-  color:transparent;
-
-  border-radius:12px;
-  cursor:pointer;
-
-  font-size:32px;
-  transition:.25s;
-}
-
-.card:hover{
-  transform:scale(1.05);
-}
-
-.card.flipped{
-  background:#ff43e0;
-  color:white;
-}
-
-.end-msg{
-  margin:15px 0;
-  font-size:18px;
-}
-
-@media (max-width:500px){
-
-  .game-container{
-    grid-template-columns:repeat(4,60px);
-    gap:10px;
-    padding:15px;
-  }
-
-  .card{
-    width:60px;
-    height:60px;
-    font-size:28px;
-  }
-}
-/* GAME DROPDOWN */
-
-.dropdown{
-  position:relative;
-  display:inline-block;
-}
-
-.dropdown-content{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-
-  min-width:220px;
-
-  background:rgba(0,0,0,.9);
-  backdrop-filter:blur(10px);
-
-  border-radius:12px;
-  overflow:hidden;
-
-  z-index:2000;
-}
-
-.dropdown-content a{
-  display:block;
-  padding:12px 15px;
-  margin:0;
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-}
-
-.dropdown-content a:hover{
-  background:rgba(255,255,255,.15);
-}
-
-.dropdown:hover .dropdown-content{
-  display:block;
-}
