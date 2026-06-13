@@ -28,7 +28,7 @@
   gap: 40px;
   max-width: 1100px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.386);
+  background: rgba(255, 255, 255, 0.58);
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
@@ -54,15 +54,15 @@
 }
 
 .sub-title {
-  font-size: 18px;
+  font-size: 2.8rem;
   color: #fffb00;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
 .hero-text h1 {
-  font-size: 2.8rem;
-  color: #ffffff;
+  font-size: 18px;
+  color: #ff00dd;
   margin-bottom: 20px;
   font-family: cursive;
 }
