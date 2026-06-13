@@ -19,23 +19,6 @@ html{
     #d9ff00,
     #ff00d4
   );
-
-  background-size:400% 400%;
-  animation:gradientMove 10s ease infinite;
-
-  color:#222;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-  background-size:400% 400%;
-  animation:gradientMove 12s ease infinite;
-
-  position:relative;
 }
 
 /* Animated Background */
@@ -55,12 +38,6 @@ html{
 
   pointer-events:none;
   z-index:0;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
 }
 
 /* =========================
@@ -83,13 +60,7 @@ html{
 }
 
 .hero h1{
-  font-size:5rem;
-  font-weight:800;
-
-  margin-bottom:15px;
-
-  text-shadow:
-    0 0 30px rgba(255,255,255,.4);
+  font-size:3rem;
 }
 
 .hero p{
@@ -160,29 +131,40 @@ html{
 ========================= */
 
 .year-slide{
-  min-height:100vh;
-
-  width:90%;
-  max-width:1400px;
-
-  margin:auto;
+  position:relative;
 
   display:grid;
   grid-template-columns:1fr 1fr;
-
   align-items:center;
-  gap:60px;
+  gap:40px;
 
-  position:relative;
-  z-index:2;
+  width:min(92%,900px);
+
+  margin:40px auto;
+  padding:20px;
+
+  background:rgba(255,255,255,.12);
+
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+
+  border:1px solid rgba(255,255,255,.2);
+
+  border-radius:40px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.15);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
 
-.year-slide:nth-child(even){
-  direction:rtl;
-}
+.year-slide:hover{
+  transform:translateY(-8px);
 
-.year-slide:nth-child(even) .year-content{
-  direction:ltr;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.25);
 }
 
 /* =========================
@@ -249,7 +231,8 @@ html{
   border-radius:35px;
 
   box-shadow:
-    0 25px 60px rgba(0,0,0,.2);
+    0 25px 60px rgba(0,0,0,.2),
+    0 10px 30px rgba(0,0,0,.15);
 }
 
 /* Huge Year */
@@ -257,19 +240,19 @@ html{
 .year-content h2{
   font-size:6rem;
   line-height:1;
-
   margin-bottom:20px;
   font-weight:800;
 
-  background:
-    linear-gradient(
-      45deg,
-      white,
-      #ffe4f8
-    );
+  background:linear-gradient(
+    45deg,
+    white,
+    #ffe4f8
+  );
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));
 }
 
 .year-content p{
@@ -277,6 +260,9 @@ html{
   line-height:1.9;
 
   color:white;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.4);
 }
 
 /* =========================
@@ -323,10 +309,6 @@ html{
     min-height:75vh;
   }
 
-  .hero h1{
-    font-size:3rem;
-  }
-
   .hero p{
     font-size:1.1rem;
   }
@@ -362,17 +344,47 @@ html{
   }
 
   .year-content{
-    width:100%;
-    text-align:center;
-    padding:25px;
-  }
+  background:rgba(255,255,255,.15);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  padding:40px;
+
+  border-radius:35px;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.2),
+    0 10px 30px rgba(0,0,0,.15);
+}
 
   .year-content h2{
-    font-size:3.5rem;
-  }
+  font-size:6rem;
+  line-height:1;
+  margin-bottom:20px;
+  font-weight:800;
+
+  background:linear-gradient(
+    45deg,
+    white,
+    #ffe4f8
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));
+}
 
   .year-content p{
-    font-size:1rem;
-    line-height:1.7;
-  }
+  font-size:1.2rem;
+  line-height:1.9;
+
+  color:white;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.4);
+}
 }
