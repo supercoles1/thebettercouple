@@ -5,10 +5,27 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #f6f6f9;
-  color: #222;
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+
+  background:linear-gradient(
+    -45deg,
+    #eeff00,
+    #ff80bf,
+    #f0ff6c,
+    #fff200
+  );
+
+  background-size:400% 400%;
+  animation:gradientMove 10s ease infinite;
+
+  color:#222;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* NAVBAR */
@@ -71,7 +88,7 @@ nav a.active {
   margin: 0 auto 60px;
   padding: 30px;
 
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 183, 0.8);
   backdrop-filter: blur(10px);
 
   border-radius: 20px;
