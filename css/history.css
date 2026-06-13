@@ -14,11 +14,23 @@ html{
 
   background:linear-gradient(
     -45deg,
-    #c800a7,
-    #ff00d4,
+    #eeff00,
     #ff80bf,
-    #ff4dc4
+    #d9ff00,
+    #ff00d4
   );
+
+  background-size:400% 400%;
+  animation:gradientMove 10s ease infinite;
+
+  color:#222;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
 
   background-size:400% 400%;
   animation:gradientMove 12s ease infinite;
