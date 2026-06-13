@@ -46,6 +46,16 @@ h1{
   margin:10px 0;
 }
 
+.game-card{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  width:90%;
+  max-width:700px;
+  box-shadow:0 0 25px rgba(255,0,128,.25);
+}
+
 .status{
   color:white;
   font-size:20px;
@@ -194,10 +204,6 @@ button:hover{
   <a href="menu.html">Menu</a>
   <a href="games.html">Games</a>
 
-  <a href="Tik-Tac-Toe.html">💛❌</a>
-  <a href="Connect4Ever.html">💞</a>
-  <a href="Memory.html">🧠</a>
-  <a href="Rock-Paper-Scissors.html">🪨📄✂️</a>
 </nav>
 
 </header>
@@ -255,6 +261,9 @@ button:hover{
 
   </div>
 </div>
+<a href="games.html" class="games-home-btn">
+  🎮 Back to Games
+</a>
 
 <script>
 const cardsContainer = document.getElementById("cards");
