@@ -2,117 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💞 Love Run</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="css/style.css">
-</head>
+<title>💞 Love Run</title>
 
-<body class="game-page">
-
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="images/UsLogo.png" alt="Logo">
-    </div>
-
-    <nav>
-  <a href="index.html">Home</a>
-  <a href="history.html">History</a>
-  <a href="seating.html">Seating</a>
-  <a href="menu.html">Menu</a>
-  <a href="games.html">Games</a>
-</nav>
-
-  </header>
-<style>
-
-body{
-  margin:0;
-  font-family:"Poppins",sans-serif;
-  background:linear-gradient(135deg,#ff4fd8,#fff066);
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.screen{
-  width:95%;
-  max-width:900px;
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(20px);
-  border-radius:30px;
-  padding:25px;
-  text-align:center;
-}
-
-h1,h2,h3{
-  color:white;
-}
-
-.character-grid{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  margin:20px 0;
-}
-
-.character{
-  width:160px;
-  padding:15px;
-  background:rgba(255,255,255,.15);
-  border-radius:20px;
-  cursor:pointer;
-  border:3px solid transparent;
-}
-
-.character.selected{
-  border-color:#ff1493;
-}
-
-.character img{
-  width:100%;
-  height:160px;
-  object-fit:contain;
-}
-
-button{
-  border:none;
-  padding:15px 30px;
-  border-radius:999px;
-  background:#ff1493;
-  color:white;
-  font-weight:700;
-  cursor:pointer;
-  margin:10px;
-}
-
-canvas{
-  width:100%;
-  background:white;
-  border-radius:20px;
-}
-
-.hidden{
-  display:none;
-}
-
-.score{
-  color:white;
-  font-size:1.2rem;
-  margin-bottom:10px;
-}
-
-.jump-btn{
-  width:100%;
-  max-width:300px;
-  font-size:1.2rem;
-}
-
-</style>
+<link rel="stylesheet" href="css/loverun.css">
 </head>
 
 <body>
@@ -141,7 +36,7 @@ canvas{
 
 </div>
 
-<!-- GAME SCREEN -->
+<!-- GAME -->
 <div id="gameScreen" class="screen hidden">
 
   <div class="score">
@@ -150,11 +45,11 @@ canvas{
 
   <canvas id="game" width="800" height="350"></canvas>
 
-  <button class="jump-btn" onclick="jump()">JUMP</button>
+  <button onclick="jump()">JUMP</button>
 
 </div>
 
-<!-- GAME OVER SCREEN -->
+<!-- GAME OVER -->
 <div id="gameOverScreen" class="screen hidden">
 
   <h1>💔 GAME OVER</h1>
@@ -166,195 +61,7 @@ canvas{
 
 </div>
 
-<script>
-
-let selectedRunner = "him";
-
-function choose(type){
-  selectedRunner = type;
-
-  document.getElementById("himCard").classList.remove("selected");
-  document.getElementById("herCard").classList.remove("selected");
-
-  document.getElementById(type === "him" ? "himCard" : "herCard")
-    .classList.add("selected");
-}
-
-const himImg = new Image();
-himImg.src = "images/HimRunner.png";
-
-const herImg = new Image();
-herImg.src = "images/HerRunner.png";
-
-const canvas = document.getElementById("game");
-const bg = new Image();
-bg.src = "images/wedding-bg.jpg"; // change to your file name
-
-const ctx = canvas.getContext("2d");
-
-let score = 0;
-let running = false;
-
-const player = {
-  x: 80,
-  y: 240,
-  width: 80,
-  height: 80,
-  vy: 0,
-  jumping: false
-};
-
-let obstacles = [];
-let obstacleTimer = 0;
-let speed = 8;
-
-function spawnObstacle(){
-  obstacles.push({
-    x: canvas.width,
-    y: 260,
-    width: 50,
-    height: 50
-  });
-}
-
-function checkCollisions(){
-  for(let o of obstacles){
-    if(
-      player.x < o.x + o.width &&
-      player.x + player.width > o.x &&
-      player.y < o.y + o.height &&
-      player.y + player.height > o.y
-    ){
-      gameOver();
-    }
-  }
-}
-
-function startGame(){
-  document.getElementById("selectScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
-
-  score = 0;
-  running = true;
-  obstacles = [];
-  speed = 8;
-  obstacleTimer = 0;
-}
-
-function jump(){
-  if(!player.jumping){
-    player.vy = -18;
-    player.jumping = true;
-  }
-}
-
-document.addEventListener("touchstart", jump);
-document.addEventListener("keydown", e => {
-  if(e.code === "Space") jump();
-});
-
-function update(){
-  if(!running) return;
-
-  player.y += player.vy;
-  player.vy += 1;
-
-  if(player.y >= 240){
-    player.y = 240;
-    player.vy = 0;
-    player.jumping = false;
-  }
-
-  obstacleTimer++;
-
-  if(obstacleTimer > 90){
-    spawnObstacle();
-    obstacleTimer = 0;
-  }
-
-  for(let i = obstacles.length - 1; i >= 0; i--){
-    obstacles[i].x -= speed;
-
-    if(obstacles[i].x < -100){
-      obstacles.splice(i, 1);
-    }
-  }
-
-  score++;
-
-  if(score % 500 === 0){
-    speed += 0.5;
-  }
-
-  checkCollisions();
-
-  document.getElementById("score").textContent = Math.floor(score / 5);
-}
-
-function draw(){
-
-  // background image
-  if(bg.complete && bg.naturalWidth !== 0){
-    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
-  } else {
-    // fallback gradient if image not loaded yet
-    ctx.fillStyle = "#fff0f6";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-  }
-
-  // ground overlay (so player sits on something)
-  ctx.fillStyle = "rgba(255,255,255,0.5)";
-  ctx.fillRect(0,320,canvas.width,30);
-
-  // player
-  ctx.fillStyle = "#ff1493";
-  ctx.fillRect(player.x, player.y, 50, 50);
-
-  // items
-  ctx.font = "30px Arial";
-  for(let item of items){
-    ctx.fillText(item.icon, item.x, item.y);
-  }
-}
-
-function loop(){
-  update();
-  draw();
-  requestAnimationFrame(loop);
-}
-
-loop();
-
-function gameOver(){
-  running = false;
-
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("gameOverScreen").classList.remove("hidden");
-
-  document.getElementById("finalScore").innerHTML =
-    "Score: " + Math.floor(score / 5);
-}
-
-function playAgain(){
-  document.getElementById("gameOverScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
-
-  player.y = 240;
-  player.vy = 0;
-
-  score = 0;
-  running = true;
-  obstacles = [];
-  speed = 8;
-  obstacleTimer = 0;
-}
-
-function changeRunner(){
-  document.getElementById("gameOverScreen").classList.add("hidden");
-  document.getElementById("selectScreen").classList.remove("hidden");
-}
-
-</script>
+<script src="js/loverun.js"></script>
 
 </body>
 </html>
