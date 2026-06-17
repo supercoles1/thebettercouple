@@ -1,89 +1,221 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #ff009d;
-  color: #222;
+html{
+  scroll-behavior:smooth;
 }
 
-/* NAVBAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 12px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+
+  background:linear-gradient(
+    -45deg,
+    #eeff00,
+    #ff80bf,
+    #f0ff6c,
+    #fff200
+  );
+
+  background-size:400% 400%;
+  animation:gradientMove 10s ease infinite;
+
+  color:#222;
+  min-height:100vh;
+
+  padding-top:110px;
 }
 
-.logo img {
-  height: 38px;
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
-nav a {
-  color: white;
-  margin-left: 18px;
-  text-decoration: none;
-  transition: 0.3s;
+/* =========================
+   FLOATING GLASS NAVBAR
+========================= */
+
+.navbar{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:90%;
+  max-width:1200px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:12px 30px;
+
+  background:rgba(255,255,255,.15);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  border-radius:60px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+  z-index:1000;
 }
 
-nav a:hover,
-nav a.active {
-  color: #ff00b7;
+.logo img{
+  height:55px;
+  display:block;
 }
 
-/* PAGE */
-.seating-page {
-  min-height: 100vh;
-  padding: 100px 20px 40px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:25px;
 }
 
-/* MATCHES hero-inner */
-.seating-inner {
-  width: 100%;
-  max-width: 1200px;
-
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
-
-  border-radius: 25px;
-  padding: 30px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  transition:.3s;
 }
 
-/* CHART */
-.seating-chart img {
-  width: 100%;
-  display: block;
-  border-radius: 15px;
+.nav-links a:hover,
+.nav-links a.active{
+  color:#ff00b7;
+  transform:translateY(-2px);
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 10px 4%;
+/* =========================
+   PAGE
+========================= */
+
+.seating-page{
+  min-height:calc(100vh - 180px);
+
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.seating-inner{
+  width:100%;
+  max-width:1200px;
+
+  background:rgba(255,255,255,.15);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.2);
+
+  border-radius:30px;
+
+  padding:25px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.15);
+}
+
+/* =========================
+   SEATING CHART
+========================= */
+
+.seating-chart{
+  overflow:auto;
+  border-radius:20px;
+}
+
+.seating-chart img{
+  width:100%;
+  display:block;
+
+  border-radius:20px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+
+  padding:25px;
+
+  background:rgba(0,0,0,.8);
+
+  color:white;
+
+  margin-top:40px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:900px){
+
+  .navbar{
+    width:95%;
+    padding:12px 20px;
   }
 
-  nav a {
-    margin-left: 12px;
-    font-size: 14px;
+  .nav-links{
+    gap:15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  body{
+    padding-top:130px;
   }
 
-  .full-img {
-    width: 100%;
-    border-radius: 10px;
+  .navbar{
+    flex-direction:column;
+    gap:12px;
+    padding:15px;
+  }
+
+  .logo img{
+    height:45px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:14px;
+  }
+
+  .seating-page{
+    padding:15px;
+  }
+
+  .seating-inner{
+    padding:15px;
+    border-radius:20px;
+  }
+
+  .seating-chart img{
+    border-radius:15px;
   }
 }
