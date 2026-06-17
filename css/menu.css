@@ -1,4 +1,3 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -39,39 +38,18 @@ body {
   color: #ff00b7;
 }
 
-
-/* MENU BANNER */
-.menu-banner {
-  text-align: center;
-  padding: 100px 20px 30px;
-}
-
-.menu-banner-img {
-  max-width: 700px;
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-}
-
-.menu-img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto 15px;
-}
-
 /* HERO */
 .menu-hero {
-  height: 40vh;
-  background: url('../images/MenuBanner.jpg') center/cover no-repeat;
   position: relative;
+  min-height: 45vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   text-align: center;
-  padding-top: 60px;
+
+  padding: 120px 20px 60px;
 }
 
 .menu-hero .overlay {
@@ -79,13 +57,30 @@ body {
   inset: 0;
   background: rgba(0,0,0,0.55);
   backdrop-filter: blur(6px);
+  z-index: 0;
 }
 
 .hero-content {
   position: relative;
-  color: rgb(255, 255, 255);
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+  max-width: 700px;
 }
 
+/* FIX: HERO IMAGE SIZE */
+.hero-image {
+  width: 180px;
+  max-width: 70%;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+/* HERO TEXT */
 .hero-content h1 {
   font-size: 2.8rem;
   font-family: cursive;
@@ -108,7 +103,6 @@ body {
 /* CARD */
 .menu-card {
   background: rgb(255, 193, 231);
-  backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -120,11 +114,23 @@ body {
   transform: translateY(-5px);
 }
 
+/* CARD TITLE */
 .menu-card h2 {
   margin-bottom: 12px;
-  color: #ffffff;
+  color: #fff;
 }
 
+/* FIX: FOOD IMAGE SIZE */
+.menu-img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+/* LIST */
 .menu-card ul {
   list-style: none;
 }
@@ -138,12 +144,13 @@ body {
 /* SPECIAL CARD */
 .menu-card.alcohol {
   background: rgba(255, 0, 0, 0.95);
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 0 10px 25px rgb(255, 0, 0);
+  border: 1px solid #fff;
+  box-shadow: 0 10px 25px red;
 }
+
 .menu-card.alcohol h2,
 .menu-card.alcohol li {
-  color: #000000;
+  color: #000;
 }
 
 /* FOOTER */
@@ -159,9 +166,14 @@ body {
 @media (max-width: 900px) {
   .menu-grid {
     grid-template-columns: 1fr;
+    padding: 30px 20px;
   }
 
   .hero-content h1 {
     font-size: 2rem;
+  }
+
+  .hero-image {
+    width: 140px;
   }
 }
