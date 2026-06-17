@@ -1,8 +1,17 @@
+/* ===================================
+   BRIA & MAURICE - GAMES PAGE CSS
+   MODERN GLASS APP DESIGN
+=================================== */
+
 /* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -20,158 +29,326 @@ body{
   animation:gradientMove 10s ease infinite;
 
   color:#222;
+  min-height:100vh;
+
+  /* Space for fixed navbar */
+  padding-top:100px;
 }
 
+/* ANIMATED BACKGROUND */
 @keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+  0%{
+    background-position:0% 50%;
+  }
+  50%{
+    background-position:100% 50%;
+  }
+  100%{
+    background-position:0% 50%;
+  }
 }
 
-/* NAVBAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 12px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
+/* =========================
+   FLOATING GLASS NAVBAR
+========================= */
+
+.navbar{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:90%;
+  max-width:1200px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:12px 30px;
+
+  background:rgba(255,255,255,.15);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  border-radius:60px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+  z-index:1000;
 }
 
-.logo img {
-  height: 38px;
+.logo img{
+  height:55px;
+  display:block;
 }
 
-nav a {
-  color: white;
-  margin-left: 18px;
-  text-decoration: none;
-  transition: 0.3s;
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:25px;
 }
 
-nav a:hover,
-nav a.active {
-  color: #ff00b7;
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  transition:all .3s ease;
 }
 
-/* HERO */
-.mobile-hero {
-  padding: 100px 20px 40px;
-  text-align: center;
+.nav-links a:hover{
+  color:#ff00b7;
+  transform:translateY(-2px);
 }
 
-.hero-image {
-  width: 220px;
-  max-width: 90%;
-  margin-bottom: 20px;
+.nav-links a.active{
+  color:#ff00b7;
 }
 
-.mobile-hero h1 {
-  color: #ff00b7;
-  margin-bottom: 10px;
-  font-size: 2rem;
+/* =========================
+   HERO SECTION
+========================= */
+
+.mobile-hero{
+  text-align:center;
+  padding:40px 20px 30px;
 }
 
-.mobile-hero p {
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
+.hero-image{
+  width:240px;
+  max-width:90%;
+  margin-bottom:20px;
+
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.15));
 }
 
-/* GAMES HUB */
-.games-hub {
-  max-width: 1000px;
-  margin: 0 auto 60px;
-  padding: 30px;
-
-  background: rgba(255, 255, 183, 0.8);
-  backdrop-filter: blur(10px);
-
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
-  text-align: center;
+.mobile-hero h1{
+  color:#ff00b7;
+  font-size:2.4rem;
+  margin-bottom:15px;
 }
 
-.games-hub h1 {
-  color: #ff00b7;
-  margin-bottom: 10px;
+.mobile-hero p{
+  max-width:700px;
+  margin:auto;
+
+  font-size:1rem;
+  line-height:1.7;
+
+  color:#333;
 }
 
-.games-hub p {
-  margin-bottom: 30px;
+/* =========================
+   GAMES HUB CONTAINER
+========================= */
+
+.games-hub{
+  max-width:1100px;
+
+  margin:0 auto 60px;
+  padding:35px;
+
+  background:rgba(255,255,255,.15);
+
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+
+  border:1px solid rgba(255,255,255,.2);
+
+  border-radius:24px;
+
+  box-shadow:
+    0 15px 30px rgba(0,0,0,.15);
+
+  text-align:center;
 }
 
-/* BUTTON GRID */
-.game-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+.games-hub h1{
+  color:#ff00b7;
+  margin-bottom:10px;
+  font-size:2rem;
 }
 
-/* GAME BUTTONS */
-.game-btn {
-  display: block;
-  text-decoration: none;
-  color: #222;
-
-  background: rgba(255,255,255,0.9);
-  border-radius: 16px;
-  overflow: hidden;
-
-  border: 2px solid rgba(255,0,183,0.15);
-
-  transition: all 0.3s ease;
+.games-hub p{
+  margin-bottom:30px;
+  color:#333;
 }
 
-.game-btn:hover {
-  transform: translateY(-5px);
-  border-color: #ff00b7;
-  box-shadow: 0 10px 25px rgba(255,0,183,0.2);
+/* =========================
+   GAME GRID
+========================= */
+
+.game-buttons{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
 }
 
-.game-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
+/* =========================
+   GAME CARDS
+========================= */
+
+.game-btn{
+  display:block;
+  text-decoration:none;
+  color:white;
+
+  background:rgba(255,255,255,.12);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  border:1px solid rgba(255,255,255,.2);
+
+  border-radius:20px;
+  overflow:hidden;
+
+  transition:all .35s ease;
 }
 
-.game-btn h3 {
-  padding: 15px;
-  color: #ff00b7;
+.game-btn:hover{
+  transform:translateY(-8px) scale(1.02);
+
+  border-color:rgba(255,0,183,.5);
+
+  box-shadow:
+    0 15px 30px rgba(0,0,0,.2),
+    0 0 20px rgba(255,0,183,.25);
 }
 
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 20px;
-  background: #111;
-  color: white;
-  margin-top: 40px;
+.game-img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  display:block;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
+.game-btn h3{
+  padding:18px;
 
-  .mobile-hero h1 {
-    font-size: 1.6rem;
+  color:white;
+
+  font-size:1rem;
+  font-weight:700;
+  text-align:center;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  margin-top:40px;
+
+  padding:25px;
+
+  text-align:center;
+
+  background:rgba(0,0,0,.8);
+  color:white;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width:900px){
+
+  .navbar{
+    width:95%;
+    padding:12px 20px;
   }
 
-  .hero-image {
-    width: 180px;
+  .nav-links{
+    gap:15px;
   }
 
-  .games-hub {
-    margin: 0 15px 40px;
-    padding: 20px;
+  .mobile-hero h1{
+    font-size:2rem;
   }
 
-  .game-buttons {
-    grid-template-columns: 1fr;
+  .games-hub{
+    margin:0 20px 50px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  body{
+    padding-top:120px;
+  }
+
+  .navbar{
+    flex-direction:column;
+    gap:12px;
+
+    padding:15px;
+  }
+
+  .logo img{
+    height:45px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:14px;
+  }
+
+  .hero-image{
+    width:180px;
+  }
+
+  .mobile-hero h1{
+    font-size:1.7rem;
+  }
+
+  .mobile-hero p{
+    font-size:.95rem;
+  }
+
+  .games-hub{
+    margin:0 15px 40px;
+    padding:20px;
+  }
+
+  .game-buttons{
+    grid-template-columns:1fr;
+  }
+
+  .game-img{
+    height:200px;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width:480px){
+
+  .mobile-hero h1{
+    font-size:1.5rem;
+  }
+
+  .games-hub h1{
+    font-size:1.6rem;
+  }
+
+  .game-btn h3{
+    font-size:.95rem;
   }
 }
