@@ -143,7 +143,7 @@ body {
 
 /* SPECIAL CARD */
 .menu-card.alcohol {
-  background: rgba(255, 0, 0, 0.95);
+  background: rgba(255, 0, 0, 0.568);
   border: 1px solid #fff;
   box-shadow: 0 10px 25px red;
 }
