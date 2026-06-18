@@ -64,4 +64,25 @@
   .logo img {
     height: 45px;
   }
+
+  @media (max-width:768px){
+
+  .navbar{
+    padding:12px 18px;
+  }
+
+  .logo img{
+    height:42px;
+  }
+
+  .nav-links{
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .nav-links a{
+    height:auto;
+    font-size:.9rem;
+  }
+}
 }

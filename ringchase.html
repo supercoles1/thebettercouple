@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>💍 Ring Chase</title>
+
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/ringchase.css">
+</head>
+
+<body class="game-page">
+
+  <!-- NAV -->
+  <header class="navbar">
+
+    <a href="index.html" class="logo">
+      <img src="images/UsLogo.png" alt="Logo">
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="history.html">History</a>
+      <a href="seating.html">Seating</a>
+      <a href="menu.html">Menu</a>
+      <a href="games.html" class="active">Games</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="game-hero">
+
+    <img
+      src="images/RingChase.png"
+      alt="Ring Chase"
+      class="hero-image"
+    >
+
+    <h1>💍 Ring Chase</h1>
+
+    <p class="hero-text">
+      Help Bria & Maurice collect love, grab engagement rings,
+      avoid wedding crashers, and make it to the celebration dinner!
+    </p>
+
+  </section>
+
+  <!-- CHARACTER SELECT -->
+  <div id="selectScreen" class="game-card">
+
+    <h2>Choose Your Character</h2>
+
+    <div class="character-grid">
+
+      <div
+        class="character selected"
+        id="himCard"
+        onclick="choose('him')">
+
+        <img
+          src="images/HimRunner.png"
+          alt="Maurice">
+
+        <h3>Maurice</h3>
+
+      </div>
+
+      <div
+        class="character"
+        id="herCard"
+        onclick="choose('her')">
+
+        <img
+          src="images/HerRunner.png"
+          alt="Bria">
+
+        <h3>Bria</h3>
+
+      </div>
+
+    </div>
+
+    <button
+      class="game-btn"
+      onclick="startGame()">
+      START GAME
+    </button>
+
+  </div>
+
+  <!-- GAME -->
+  <div id="gameScreen" class="game-card hidden">
+
+    <!-- SCOREBOARD -->
+    <div class="scoreboard">
+
+      <div class="score-box">
+        <h3>Score</h3>
+        <span id="score">0</span>
+      </div>
+
+      <div class="score-box">
+        <h3>Rings</h3>
+        <span id="rings">0</span>
+      </div>
+
+      <div class="score-box">
+        <h3>Lives</h3>
+        <span id="lives">3</span>
+      </div>
+
+    </div>
+
+    <!-- LOVE POWER -->
+    <div class="power-section">
+
+      <h3>💖 Love Power</h3>
+
+      <div class="power-container">
+        <div
+          id="powerBar"
+          class="power-bar">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+
+      <span>❤️ = Love</span>
+      <span>💍 = Ring Power-Up</span>
+      <span>👻 = Wedding Crasher</span>
+      <span>💛 = Vulnerable Ghost</span>
+      <span>💒 = Celebration Goal</span>
+
+    </div>
+
+    <!-- GAME CANVAS -->
+    <canvas
+      id="gameCanvas"
+      width="560"
+      height="620">
+    </canvas>
+
+    <!-- MOBILE BUTTONS -->
+    <div class="mobile-controls">
+
+      <button onclick="moveUp()">⬆️</button>
+
+      <div class="control-row">
+        <button onclick="moveLeft()">⬅️</button>
+        <button onclick="moveDown()">⬇️</button>
+        <button onclick="moveRight()">➡️</button>
+      </div>
+
+    </div>
+
+    <button
+      class="game-btn"
+      onclick="restartGame()">
+      Restart Game
+    </button>
+
+  </div>
+
+  <!-- GAME OVER -->
+  <div id="gameOverScreen" class="popup hidden">
+
+    <div class="popup-card">
+
+      <h2>💔 MISSED THE DINNER!</h2>
+
+      <p>
+        Final Score:
+        <span id="finalScore">0</span>
+      </p>
+
+      <button
+        class="game-btn"
+        onclick="restartGame()">
+        Play Again
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- WIN SCREEN -->
+  <div id="winScreen" class="popup hidden">
+
+    <div class="popup-card">
+
+      <h2>💒 MADE IT TO THE CELEBRATION!</h2>
+
+      <p>
+        Final Score:
+        <span id="winScore">0</span>
+      </p>
+
+      <button
+        class="game-btn"
+        onclick="restartGame()">
+        Play Again
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="js/ringchase.js"></script>
+
+</body>
+</html>
