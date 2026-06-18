@@ -2,7 +2,7 @@
    HERO SECTION MODERN APP
 ========================= */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
 }
 
 .hero-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(8px);
@@ -72,67 +72,6 @@
   line-height: 1.8;
 }
 
-/* =========================
-   MODERN GLASS NAVBAR
-========================= */
-
-.navbar{
-  position: fixed;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 90%;
-  max-width: 1200px;
-
-  padding: 14px 30px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50px;
-
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-
-  z-index: 1000;
-}
-
-.nav-links{
-  display:flex;
-  gap:25px;
-}
-
-.nav-links a{
-  color:white;
-  text-decoration:none;
-  font-size:15px;
-  font-weight:600;
-  transition:all .3s ease;
-}
-
-.nav-links a:hover{
-  color:#ff00b7;
-  transform:translateY(-2px);
-}
-
-.nav-links a.active{
-  color:#ff00b7;
-}
-
-.footer {
-  text-align: center;
-  padding: 20px;
-  background: #111;
-  color: white;
-  margin-top: 40px;
-}
-
 /* MOBILE */
 @media (max-width: 900px) {
   .hero-inner {
@@ -168,7 +107,4 @@
     font-size: 14px;
   }
 
-  .navbar {
-    padding: 10px 4%;
-  }
 }

@@ -35,65 +35,6 @@ body{
 }
 
 /* =========================
-   FLOATING GLASS NAVBAR
-========================= */
-
-.navbar{
-  position:fixed;
-  top:15px;
-  left:50%;
-  transform:translateX(-50%);
-
-  width:90%;
-  max-width:1200px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:12px 30px;
-
-  background:rgba(255,255,255,.15);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
-  border:1px solid rgba(255,255,255,.25);
-
-  border-radius:60px;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.15);
-
-  z-index:1000;
-}
-
-.logo img{
-  height:55px;
-  display:block;
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:25px;
-}
-
-.nav-links a{
-  color:white;
-  text-decoration:none;
-  font-size:15px;
-  font-weight:600;
-  transition:.3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-  color:#ff00b7;
-  transform:translateY(-2px);
-}
-
-/* =========================
    PAGE
 ========================= */
 
@@ -121,8 +62,7 @@ body{
 
   padding:25px;
 
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.15);
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
 }
 
 /* =========================
@@ -140,8 +80,7 @@ body{
 
   border-radius:20px;
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.15);
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 /* =========================
@@ -165,14 +104,8 @@ body{
 ========================= */
 
 @media(max-width:900px){
-
-  .navbar{
-    width:95%;
-    padding:12px 20px;
-  }
-
-  .nav-links{
-    gap:15px;
+  .seating-inner{
+    padding:18px;
   }
 }
 
@@ -181,30 +114,6 @@ body{
 ========================= */
 
 @media(max-width:768px){
-
-  body{
-    padding-top:130px;
-  }
-
-  .navbar{
-    flex-direction:column;
-    gap:12px;
-    padding:15px;
-  }
-
-  .logo img{
-    height:45px;
-  }
-
-  .nav-links{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
-  }
-
-  .nav-links a{
-    font-size:14px;
-  }
 
   .seating-page{
     padding:15px;

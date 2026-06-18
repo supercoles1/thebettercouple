@@ -8,41 +8,6 @@
   box-sizing:border-box;
 }
 
-/* NAVIGATION */
-.navbar{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:15px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(0,0,0,.5);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-
-.logo img{
-  height:38px;
-}
-
-nav{
-  display:flex;
-  align-items:center;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  margin-left:20px;
-  font-size:15px;
-  transition:.3s;
-}
-
-nav a:hover{
-  color:#ff00b7;
-}
-
 /* =========================
    GAME PAGE
 ========================= */
@@ -348,10 +313,6 @@ canvas{
 #gameCanvas{
   width:100%;
   max-width:350px;
-}
-
-#game{
-  margin:20px auto;
 }
 
 .memory-grid,

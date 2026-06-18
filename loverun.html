@@ -2,66 +2,128 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💞 Love Run</title>
 
-<title>💞 Love Run</title>
-
-<link rel="stylesheet" href="css/loverun.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/loverun.css">
 </head>
 
-<body>
+<body class="game-page">
 
-<!-- CHARACTER SELECT -->
-<div id="selectScreen" class="screen">
+  <!-- NAV -->
+  <header class="navbar">
 
-  <h1>💞 Love Run</h1>
-  <h3>Choose Your Runner</h3>
+    <a href="index.html" class="logo">
+      <img src="images/UsLogo.png" alt="Logo">
+    </a>
 
-  <div class="character-grid">
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="history.html">History</a>
+      <a href="seating.html">Seating</a>
+      <a href="menu.html">Menu</a>
+      <a href="games.html" class="active">Games</a>
+    </nav>
 
-    <div class="character selected" id="himCard" onclick="choose('him')">
-      <img src="images/HimRunner.png">
-      <h3>Maurice</h3>
+  </header>
+
+  <!-- HERO -->
+  <section class="game-hero">
+
+    <img
+      src="images/LoveRun.png"
+      alt="Bria and Maurice"
+      class="hero-image"
+    >
+
+    <h1>💞 Love Run</h1>
+
+    <p>
+      Bria and Maurice are racing to make it to their Celebration Dinner
+      before time runs out. Jump over heartbreaks, dodge obstacles,
+      and make it to the celebration together.
+    </p>
+
+  </section>
+
+  <!-- CHARACTER SELECT -->
+  <div id="selectScreen" class="screen">
+
+    <h2>Choose Your Runner</h2>
+
+    <div class="character-grid">
+
+      <div class="character selected"
+           id="himCard"
+           onclick="choose('him')">
+
+        <img src="images/HimRunner.png" alt="Maurice">
+
+        <h3>Maurice</h3>
+
+      </div>
+
+      <div class="character"
+           id="herCard"
+           onclick="choose('her')">
+
+        <img src="images/HerRunner.png" alt="Bria">
+
+        <h3>Bria</h3>
+
+      </div>
+
     </div>
 
-    <div class="character" id="herCard" onclick="choose('her')">
-      <img src="images/HerRunner.png">
-      <h3>Bria</h3>
-    </div>
+    <button onclick="startGame()">
+      START GAME
+    </button>
 
   </div>
 
-  <button onclick="startGame()">START GAME</button>
+  <!-- GAME -->
+  <div id="gameScreen" class="screen hidden">
 
-</div>
+    <div class="score">
+      Score:
+      <span id="score">0</span>
+    </div>
 
-<!-- GAME -->
-<div id="gameScreen" class="screen hidden">
+    <canvas
+      id="game"
+      width="800"
+      height="350">
+    </canvas>
 
-  <div class="score">
-    Score: <span id="score">0</span>
+    <button onclick="jump()">
+      JUMP
+    </button>
+
   </div>
 
-  <canvas id="game" width="800" height="350"></canvas>
+  <!-- GAME OVER -->
+  <div id="gameOverScreen"
+       class="screen hidden">
 
-  <button onclick="jump()">JUMP</button>
+    <h1>💔 GAME OVER</h1>
 
-</div>
+    <h2 id="finalScore">
+      Score: 0
+    </h2>
 
-<!-- GAME OVER -->
-<div id="gameOverScreen" class="screen hidden">
+    <button onclick="playAgain()">
+      PLAY AGAIN
+    </button>
 
-  <h1>💔 GAME OVER</h1>
+    <button onclick="changeRunner()">
+      CHANGE RUNNER
+    </button>
 
-  <h2 id="finalScore">Score: 0</h2>
+  </div>
 
-  <button onclick="playAgain()">PLAY AGAIN</button>
-  <button onclick="changeRunner()">CHANGE RUNNER</button>
-
-</div>
-
-<script src="js/loverun.js"></script>
+  <script src="js/loverun.js"></script>
 
 </body>
 </html>

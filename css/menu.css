@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -8,83 +9,7 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background: #fc68d0;
   color: #222;
-}
 
-/* NAVBAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 12px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
-
-.logo img {
-  height: 38px;
-}
-
-.nav-links a {
-  color: white;
-  margin-left: 18px;
-  text-decoration: none;
-}
-
-.nav-links a.active {
-  color: #ff00b7;
-}
-
-/* HERO */
-
-.menu-hero{
-  height:50vh;
-
-  background:url('../images/MenuBanner.jpg')
-  center center / cover no-repeat;
-
-  position:relative;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-}
-
-.hero-content h1{
-  font-size:3rem;
-  color:white;
-
-  text-shadow:
-    0 4px 20px rgba(0,0,0,.5);
-}
-
-.menu-hero {
-  position: relative;
-  min-height: 45vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 120px 20px 60px;
-}
-
-.menu-hero .overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
 }
 
 .hero-content {
@@ -93,21 +18,24 @@ body {
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-
   gap: 10px;
   max-width: 700px;
 }
 
-
-/* HERO TEXT */
 .hero-content h1 {
   font-size: 2.8rem;
-  font-family: cursive;
   color: #ff00b7;
+  text-shadow: 0 4px 20px rgba(0,0,0,.6);
 }
 
-/* GRID */
+.hero-content p {
+  color: white;
+}
+
+/* =========================
+   MENU GRID
+========================= */
+
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -120,8 +48,8 @@ body {
   background: rgb(255, 193, 231);
   border-radius: 16px;
   padding: 20px;
+
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  font-family: cursive;
   transition: 0.3s;
 }
 
@@ -129,13 +57,14 @@ body {
   transform: translateY(-5px);
 }
 
-/* CARD TITLE */
 .menu-card h2 {
   margin-bottom: 12px;
   color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+
 }
 
-/* FIX: FOOD IMAGE SIZE */
+/* IMAGE FIX */
 .menu-img {
   width: 110px;
   height: 110px;
@@ -153,19 +82,12 @@ body {
 .menu-card li {
   padding: 6px 0;
   border-bottom: 1px solid #eee;
-  font-size: 15px;
 }
 
-/* SPECIAL CARD */
+/* ALCOHOL CARD */
 .menu-card.alcohol {
-  background: rgba(255, 0, 0, 0.568);
-  border: 1px solid #fff;
-  box-shadow: 0 10px 25px red;
-}
-
-.menu-card.alcohol h2,
-.menu-card.alcohol li {
-  color: #000;
+  background: rgba(255,0,0,0.6);
+  border: 1px solid white;
 }
 
 /* FOOTER */
@@ -177,8 +99,12 @@ body {
   margin-top: 40px;
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
+/* =========================
+   MOBILE FIX
+========================= */
+
+@media (max-width: 600px) {
+
   .menu-grid {
     grid-template-columns: 1fr;
     padding: 30px 20px;
@@ -188,7 +114,27 @@ body {
     font-size: 2rem;
   }
 
-  .hero-image {
-    width: 140px;
+  .menu-hero {
+  position: relative;
+
+  /* responsive perfect sizing */
+  min-height: 220px;
+  height: clamp(260px, 45vh, 420px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 120px 20px 40px;
+
+  background: url('../images/MenuBanner.jpg')
+    center center / cover no-repeat;
+}
+
+  .nav-links {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

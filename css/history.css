@@ -58,61 +58,6 @@ body{
 }
 
 /* =========================
-   GLASS NAVBAR
-========================= */
-
-.navbar{
-  position:fixed;
-  top:15px;
-  left:50%;
-  transform:translateX(-50%);
-
-  width:90%;
-  max-width:1200px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:12px 25px;
-
-  background:rgba(255,255,255,.15);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
-  border:1px solid rgba(255,255,255,.25);
-
-  border-radius:60px;
-
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-  z-index:1000;
-}
-
-.logo img{
-  height:55px;
-  display:block;
-}
-
-.nav-links{
-  display:flex;
-  gap:25px;
-}
-
-.nav-links a{
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  transition:.3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-  color:#ff00b7;
-}
-
-/* =========================
    HERO
 ========================= */
 
@@ -333,24 +278,6 @@ body{
 ========================= */
 
 @media(max-width:768px){
-
-  .navbar{
-    width:95%;
-    flex-direction:column;
-    gap:12px;
-
-    padding:15px;
-  }
-
-  .logo img{
-    height:45px;
-  }
-
-  .nav-links{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
-  }
 
   .timeline::before{
     display:none;

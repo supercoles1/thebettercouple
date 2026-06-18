@@ -1,45 +1,85 @@
-/* =========================
-   RESET
-========================= */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color:transparent;
 }
 
-/* =========================
-   BODY
-========================= */
-body{
+body.game-page{
   font-family:"Poppins",sans-serif;
 
-  background: linear-gradient(135deg,#ff4fd8,#fff066);
-  background-size: 200% 200%;
-  animation: bgMove 10s ease infinite;
+  background:linear-gradient(
+    135deg,
+    #ff4fd8,
+    #fff066
+  );
+
+  background-size:200% 200%;
+  animation:bgMove 10s ease infinite;
 
   min-height:100vh;
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  padding-top:110px;
+  padding-bottom:40px;
 }
 
-/* background animation */
-@keyframes bgMove {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
-/* =========================
-   SCREEN (MAIN CARD)
-========================= */
+/* HERO */
+
+.game-hero{
+  width:95%;
+  max-width:900px;
+
+  margin:20px auto 25px;
+
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(20px);
+
+  border-radius:30px;
+  padding:25px;
+
+  text-align:center;
+
+  color:white;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
+}
+
+.hero-image{
+  width:220px;
+  max-width:80%;
+
+  display:block;
+  margin:0 auto 15px;
+}
+
+.game-hero h1{
+  font-size:2.4rem;
+  margin-bottom:10px;
+}
+
+.game-hero p{
+  max-width:700px;
+  margin:auto;
+
+  line-height:1.6;
+}
+
+/* CARDS */
+
 .screen{
   width:95%;
   max-width:900px;
 
-  background:rgba(255,255,255,0.15);
+  margin:0 auto 25px;
+
+  background:rgba(255,255,255,.15);
   backdrop-filter:blur(20px);
 
   border-radius:30px;
@@ -48,55 +88,84 @@ body{
   text-align:center;
   color:white;
 
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
 }
 
-/* =========================
-   HEADINGS
-========================= */
-h1,h2,h3{
-  color:white;
+.character-grid{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+
+  flex-wrap:wrap;
+
+  margin:20px 0;
 }
 
-/* =========================
-   SCORE
-========================= */
+.character{
+  width:160px;
+
+  padding:15px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.15);
+
+  border:3px solid transparent;
+
+  cursor:pointer;
+  transition:.25s;
+}
+
+.character:hover{
+  transform:translateY(-5px);
+}
+
+.character.selected{
+  border-color:#ff1493;
+
+  box-shadow:
+    0 0 20px rgba(255,20,147,.8);
+}
+
+.character img{
+  width:100%;
+  height:160px;
+
+  object-fit:contain;
+}
+
+/* SCORE */
+
 .score{
-  font-size:1.2rem;
-  margin-bottom:10px;
+  font-size:1.3rem;
+  margin-bottom:15px;
 }
 
-/* =========================
-   CANVAS (GAME BOARD)
-========================= */
+/* GAME */
+
 canvas{
+  display:block;
+
   width:100%;
   max-width:800px;
-  height:350px;
+  height:auto;
+
+  margin:0 auto 20px;
+
+  background:white;
 
   border-radius:20px;
 
-  display:block;
-  margin:0 auto;
-
-  background:#fff;
-
-  aspect-ratio: 7 / 6;
-
-  border-radius:20px;
-
-  background: radial-gradient(circle, #ffffff, #f7f7f7);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-
-  display:block;
-  margin:0 auto;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
+
 button{
   margin-top:15px;
+
   padding:14px 28px;
 
   border:none;
@@ -108,7 +177,7 @@ button{
   font-weight:bold;
   cursor:pointer;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s;
+  transition:.25s;
 }
 
 button:hover{
@@ -116,68 +185,37 @@ button:hover{
   background:#ff2da8;
 }
 
-/* =========================
-   CHARACTER SELECT
-========================= */
-.character-grid{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  margin:20px 0;
-}
+/* HIDDEN */
 
-.character{
-  width:160px;
-  padding:15px;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,0.15);
-  border:3px solid transparent;
-
-  cursor:pointer;
-  transition:0.2s ease;
-}
-
-.character:hover{
-  transform:translateY(-5px);
-}
-
-.character.selected{
-  border-color:#ff1493;
-  box-shadow: 0 0 20px rgba(255,20,147,0.8);
-  transform: scale(1.05);
-}
-
-.character img{
-  width:100%;
-  height:160px;
-  object-fit:contain;
-}
-
-/* =========================
-   HIDDEN STATE
-========================= */
 .hidden{
   display:none !important;
 }
 
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 600px) {
+/* MOBILE */
 
-  .screen {
-    padding: 15px;
-    border-radius: 20px;
+@media(max-width:768px){
+
+  .hero-image{
+    width:170px;
   }
 
-  button {
-    width: 100%;
+  .game-hero h1{
+    font-size:1.9rem;
   }
 
-  .character {
-    width: 45%;
+  .screen{
+    padding:18px;
+  }
+
+  .character{
+    width:140px;
+  }
+
+  .character img{
+    height:130px;
+  }
+
+  button{
+    width:100%;
   }
 }

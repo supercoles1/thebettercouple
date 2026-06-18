@@ -1,0 +1,67 @@
+/* =========================
+   GLOBAL GLASS NAVBAR (MASTER)
+========================= */
+
+.navbar {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 30px;
+
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 60px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  z-index: 1000;
+}
+
+.logo img {
+  height: 55px;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+
+  /* ✨ shadow added */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ff00b7;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .logo img {
+    height: 45px;
+  }
+}
