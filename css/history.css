@@ -62,7 +62,7 @@ body{
 ========================= */
 
 .hero{
-  min-height:100vh;
+  min-height:25vh;
 
   display:flex;
   flex-direction:column;
@@ -71,7 +71,7 @@ body{
 
   text-align:center;
 
-  padding:160px 20px 60px;
+  padding:100px 10px 30px;
 
   position:relative;
   z-index:2;
