@@ -4,373 +4,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⏺</title>
+
+  <title>🪨📄✂️ Rock Paper Scissors</title>
+
+  <!-- ONLY YOUR TWO CSS FILES -->
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="game-page">
 
-<!-- NAV -->
-<header class="navbar">
+  <!-- NAVBAR -->
+  <header class="navbar">
 
-  <a href="index.html" class="logo">
-    <img src="images/UsLogo.png" alt="Logo">
+    <a href="index.html" class="logo">
+      <img src="images/UsLogo.png" alt="Logo">
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="history.html">History</a>
+      <a href="seating.html">Seating</a>
+      <a href="menu.html">Menu</a>
+      <a href="games.html" class="active">Games</a>
+    </nav>
+
+  </header>
+
+  <!-- GAME HEADER -->
+  <img src="images/DeuceHulk.png" class="game-logo" alt="Bre">
+
+  <p class="game-quote">
+    "Try to guess the number I'm thinking of.
+    Good luck... honestly, most of the time I don't even know what I'm thinking myself."
+    <br><br>
+    - Brelyn
+  </p>
+
+  <h1>Guess the Number 💖</h1>
+
+  <!-- SCOREBOARD -->
+  <div class="scoreboard">
+
+    <div class="score-box">
+      <h3>YOU</h3>
+      <span id="playerWins">0</span>
+    </div>
+
+    <div class="middle-box">
+      💭 MIND READER 💭
+    </div>
+
+    <div class="score-box">
+      <h3>BRE</h3>
+      <span id="breWins">0</span>
+    </div>
+
+  </div>
+
+  <!-- GAME AREA -->
+  <div class="game-card">
+
+    <div id="status" class="status">
+      You have 3 guesses!
+    </div>
+
+    <div id="cards"></div>
+
+  </div>
+
+  <!-- END SCREEN -->
+  <div class="end-screen" id="endScreen">
+
+    <div class="end-box">
+
+      <div class="end-title" id="endTitle"></div>
+
+      <div class="end-msg" id="endMessage"></div>
+
+      <button onclick="initGame()">
+        🔄 Play Again
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- BACK BUTTON -->
+  <a href="games.html" class="games-home-btn">
+    🎮 Back to Games
   </a>
 
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="history.html">History</a>
-    <a href="seating.html">Seating</a>
-    <a href="menu.html">Menu</a>
-    <a href="games.html" class="active">Games</a>
-  </nav>
-
-</header>
-
-<style>
-body{
-  margin:0;
-  font-family:"Poppins",sans-serif;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  min-height:100vh;
-  overflow-x:hidden;
-
-  background:linear-gradient(
-    45deg,
-    #ff43e0,
-    #ffc0cb,
-    #ff80bf
-  );
-
-  background-size:400% 400%;
-  animation:gradientMove 8s ease infinite;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-.logo{
-  width:130px;
-  margin-top:15px;
-}
-
-h1{
-  color:white;
-  text-shadow:2px 2px 5px #ff0077;
-  text-align:center;
-  margin:10px 0;
-}
-
-.game-card{
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(15px);
-  padding:25px;
-  border-radius:20px;
-  width:90%;
-  max-width:700px;
-  box-shadow:0 0 25px rgba(255,0,128,.25);
-}
-
-.status{
-  color:white;
-  font-size:20px;
-  font-weight:600;
-  margin-bottom:20px;
-  text-shadow:1px 1px 4px #ff0077;
-}
-
-#cards{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:15px;
-}
-
-.card{
-  width:75px;
-  height:100px;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  border-radius:16px;
-
-  background:rgba(255,255,255,.25);
-  backdrop-filter:blur(10px);
-
-  color:white;
-  font-size:28px;
-  font-weight:bold;
-
-  cursor:pointer;
-
-  transition:.25s;
-
-  box-shadow:0 6px 15px rgba(0,0,0,.25);
-}
-
-.card:hover{
-  transform:translateY(-8px) scale(1.05);
-}
-
-button{
-  margin-top:15px;
-  padding:10px 20px;
-  border:none;
-  border-radius:10px;
-
-  background:#ff43e0;
-  color:white;
+  <!-- SCRIPT -->
+  <script>
+    const cardsContainer = document.getElementById("cards");
+    const status = document.getElementById("status");
 
-  font-size:16px;
-  font-weight:600;
-
-  cursor:pointer;
-}
+    let numberToGuess;
+    let guessesLeft;
 
-button:hover{
-  background:#ff66ff;
-}
+    let playerWins = 0;
+    let breWins = 0;
 
-.end-screen{
-  position:fixed;
-  inset:0;
+    function initGame(){
 
-  background:rgba(0,0,0,.65);
+      cardsContainer.innerHTML = "";
+      guessesLeft = 3;
 
-  display:none;
-  justify-content:center;
-  align-items:center;
+      numberToGuess = Math.floor(Math.random() * 10) + 1;
 
-  backdrop-filter:blur(4px);
+      status.textContent = `You have ${guessesLeft} guesses!`;
 
-  z-index:999;
-}
+      document.getElementById("endScreen").style.display = "none";
 
-.end-box{
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
-  width:80%;
-  max-width:320px;
-}
+      for(let i = 1; i <= 10; i++){
 
-.end-title{
-  font-size:24px;
-  font-weight:bold;
-  color:#ff0099;
-}
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.textContent = i;
 
-.end-msg{
-  margin:15px 0;
-  font-size:18px;
-}
+        card.addEventListener("click", () => makeGuess(i));
 
-.scoreboard{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+        cardsContainer.appendChild(card);
+      }
+    }
 
-  width:90%;
-  max-width:700px;
+    function makeGuess(guess){
 
-  margin-bottom:20px;
-}
+      if(guessesLeft <= 0) return;
 
-.score-box{
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(10px);
+      guessesLeft--;
 
-  padding:15px 25px;
-  border-radius:20px;
+      if(guess === numberToGuess){
 
-  min-width:120px;
-}
+        playerWins++;
+        document.getElementById("playerWins").textContent = playerWins;
 
-.score-box h3{
-  margin:0;
-}
+        endGame(true);
 
-.score-box span{
-  font-size:34px;
-  font-weight:bold;
-}
+      } else if(guessesLeft > 0){
 
-.middle-box{
-  font-size:22px;
-  font-weight:bold;
-  color:white;
-}
-</style>
-</head>
+        status.textContent =
+          `Wrong! ${guessesLeft} guess${guessesLeft > 1 ? "es" : ""} left.`;
 
-<body class="game-page">
+      } else {
 
-<img src="images/DeuceHulk.png"
-     class="game-logo">
+        breWins++;
+        document.getElementById("breWins").textContent = breWins;
 
-<p class="game-quote">
-  "Try to guess the number I'm thinking of.
-  Good luck... honestly, most of the time I don't even know what I'm thinking myself."
-  <br><br>
-  -Brelyn
-</p>
+        endGame(false);
+      }
+    }
 
-<h1>Guess the Number 💖</h1>
+    function endGame(win){
 
-<div class="scoreboard">
+      const endScreen = document.getElementById("endScreen");
+      const endTitle = document.getElementById("endTitle");
+      const endMessage = document.getElementById("endMessage");
 
-  <div class="score-box">
-    <h3>YOU</h3>
-    <span id="playerWins">0</span>
-  </div>
+      if(win){
+        endTitle.textContent = "😡 REMATCH!";
+        endMessage.textContent =
+          `You guessed my number! It was ${numberToGuess}.`;
+      } else {
+        endTitle.textContent = "😂 You're TRASH!";
+        endMessage.textContent =
+          `My number was ${numberToGuess}.`;
+      }
 
-  <div class="middle-box">
-    💭 MIND READER 💭
-  </div>
+      endScreen.style.display = "flex";
+    }
 
-  <div class="score-box">
-    <h3>BRE</h3>
-    <span id="breWins">0</span>
-  </div>
-
-</div>
-
-<div class="game-card">
-
-  <div id="status" class="status">
-    You have 3 guesses!
-  </div>
-
-  <div id="cards"></div>
-
-</div>
-
-<div class="end-screen" id="endScreen">
-  <div class="end-box">
-
-    <div class="end-title" id="endTitle"></div>
-
-    <div class="end-msg" id="endMessage"></div>
-
-    <button onclick="initGame()">
-      🔄 Play Again
-    </button>
-
-  </div>
-</div>
-<a href="games.html" class="games-home-btn">
-  🎮 Back to Games
-</a>
-
-<script>
-const cardsContainer = document.getElementById("cards");
-const status = document.getElementById("status");
-
-let numberToGuess;
-let guessesLeft;
-
-let playerWins = 0;
-let breWins = 0;
-
-function initGame(){
-
-  cardsContainer.innerHTML="";
-
-  guessesLeft=3;
-
-  numberToGuess=Math.floor(Math.random()*10)+1;
-
-  status.textContent=`You have ${guessesLeft} guesses!`;
-
-  document.getElementById("endScreen").style.display="none";
-
-  for(let i=1;i<=10;i++){
-
-    const card=document.createElement("div");
-
-    card.classList.add("card");
-
-    card.textContent=i;
-
-    card.addEventListener("click",()=>makeGuess(i));
-
-    cardsContainer.appendChild(card);
-  }
-}
-
-function makeGuess(guess){
-
-  if(guessesLeft<=0) return;
-
-  guessesLeft--;
-
-  if(guess===numberToGuess){
-
-    playerWins++;
-
-    document.getElementById("playerWins").textContent=
-      playerWins;
-
-    endGame(true);
-
-  }else if(guessesLeft>0){
-
-    status.textContent=
-      `Wrong! ${guessesLeft} guess${guessesLeft>1?"es":""} left.`;
-
-  }else{
-
-    breWins++;
-
-    document.getElementById("breWins").textContent=
-      breWins;
-
-    endGame(false);
-  }
-}
-
-function endGame(win){
-
-  const endScreen =
-    document.getElementById("endScreen");
-
-  const endTitle =
-    document.getElementById("endTitle");
-
-  const endMessage =
-    document.getElementById("endMessage");
-
-  if(win){
-
-    endTitle.textContent=
-      "😡 REMATCH!";
-
-    endMessage.textContent=
-      `You guessed my number! It was ${numberToGuess}.`;
-
-  }else{
-
-    endTitle.textContent=
-      "😂 You're TRASH!";
-
-    endMessage.textContent=
-      `My number was ${numberToGuess}.`;
-  }
-
-  endScreen.style.display="flex";
-}
-
-initGame();
-</script>
+    initGame();
+  </script>
 
 </body>
 </html>
